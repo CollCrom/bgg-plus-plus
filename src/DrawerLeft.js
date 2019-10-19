@@ -79,21 +79,20 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 0,
     },
 }));
-
-const PersistentDrawerLeft = (
-    playingTimeOpen,
-    leftNavOpenOpen,
-    suggestPlayersOpen,
-    reviewScoreOpen,
-    numReviewersOpen,
-    complexityOpen,
-    numPlayersOpen,
-    categoriesOpen,
-    ageRangeOpen,
-    designerOpen,
-    artistsOpen,
-    publisherOpen,
-    ) => {
+const PersistentDrawerLeft = ({
+        playingTimeOpen,
+        leftNavOpenOpen,
+        suggestPlayersOpen,
+        reviewScoreOpen,
+        numReviewersOpen,
+        complexityOpen,
+        numPlayersOpen,
+        categoriesOpen,
+        ageRangeOpen,
+        designerOpen,
+        artistsOpen,
+        publisherOpen,
+    }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -205,7 +204,17 @@ const enhance = compose(
         ({openTabs, leftNavOpen}) => ({
             openTabs,
             leftNavOpen,
-        })
+        }),
+        {
+            setTabOpenState: tab => ({ // {tabName: boolean}
+                type: 'SET_TAB_OPEN_STATE',
+                payload: tab
+            }),
+            setLeftNavOpenState: state => ({ // boolean
+                type: 'SET_LEFT_NAV_STATE',
+                payload: state
+            })
+        }
     ),
     withProps(({openTabs}) => ({
         playingTimeOpen: openTabs.playingTime,
