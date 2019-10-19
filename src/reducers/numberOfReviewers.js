@@ -4,10 +4,7 @@ import { actions } from "./actions.actions";
 const numberOfReviewers = (state=0, { type, payload}) => {
   switch(type) {
     case actions.setNumberOfReviewers: {
-      return {
-        ...state,
-        numberOfReviewers: payload
-      }
+      return payload;
     }
     default: {
       return state;

@@ -3,10 +3,7 @@ import { actions } from "./actions.actions";
 const designers = (state = [], {type, payload}) => {
   switch(type) {
     case actions.setDesigner: {
-      return {
-        ...state,
-        designers: payload,
-      }
+      return payload;
     }
     default: {
       return state;
