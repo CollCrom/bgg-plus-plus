@@ -1,10 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
+      <Drawer open="true" variant="persistent">
+      <Button>Playing Time</Button>
+      </Drawer>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
