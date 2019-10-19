@@ -249,11 +249,9 @@ const PersistentDrawerLeft = ({
                     </ListItem>
                     <Collapse in={numReviewersOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
                                 <ListItem button className={classes.nested}>
                                     <SingleSlider/>
                                 </ListItem>
-                            </ListItem>
                         </List>
                     </Collapse>
                     <ListItem button onClick={toggleComplexity}>
