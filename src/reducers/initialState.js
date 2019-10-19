@@ -12,6 +12,19 @@ export default {
         artists: false,
         publisher: false,
     },
+    activeCriteria: {
+        playingTime: false,
+        suggestedsPlayers: false,
+        reviewScore: false,
+        numReviewers: false,
+        complexity: false,
+        numPlayers: false,
+        categories: false,
+        ageRange: false,
+        designers: false,
+        artists: false,
+        publishers: false,
+    },
     leftNavOpen: true,
 
     playingTime: [1, 240], //in minutes

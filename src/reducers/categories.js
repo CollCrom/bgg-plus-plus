@@ -4,10 +4,7 @@ import { actions } from "./actions.actions";
 const categories = (state = [], {type, payload}) => {
   switch(type) {
     case actions.setCategories: {
-      return {
-        ...state,
-        categories: payload,
-      }
+      return payload;
     }
     default: {
       return state;
