@@ -1,6 +1,8 @@
+import {actions} from './actions.actions'
+
 const openTabsReducer = (state = {}, { type, payload }) => {
     switch (type) {
-        case 'SET_TAB_OPEN_STATE': {
+        case actions.setTabOpenState: {
             return {
                 ...state,
                 ...payload

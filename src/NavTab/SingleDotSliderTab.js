@@ -3,6 +3,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from "@material-ui/core/Collapse";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
+import SingleSlider from '../sliders/SingleSlider';
 
 const SingleDotSliderTab = ({
     openClickHandler,
@@ -16,7 +17,7 @@ const SingleDotSliderTab = ({
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openVariable} timeout="auto">
-                I'm a single dot slider
+                {SingleSlider()}
             </Collapse>
         </>
     );

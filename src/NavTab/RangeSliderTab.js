@@ -3,6 +3,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from "@material-ui/core/Collapse";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
+import DoubleSlider from '../sliders/DoubleSlider';
 
 const RangeSliderTab = ({
     openClickHandler,
@@ -16,7 +17,7 @@ const RangeSliderTab = ({
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openVariable} timeout="auto">
-                I'm a range slider
+                {DoubleSlider()}
             </Collapse>
         </>
     );

@@ -15,6 +15,7 @@ import MinMaxNumInputTab from '../NavTab/MinMaxNumInputTab';
 import MultiselectTab from '../NavTab/MultiselectTab';
 import RangeSliderTab from '../NavTab/RangeSliderTab';
 import SingleDotSlider from '../NavTab/SingleDotSliderTab';
+import { actions } from '../reducers/actions.actions';
 
 const drawerWidth = 360;
 
@@ -221,11 +222,11 @@ const enhance = compose(
         }),
         {
             setTabOpenState: tab => ({ // {tabName: boolean}
-                type: 'SET_TAB_OPEN_STATE',
+                type: actions.setTabOpenState,
                 payload: tab
             }),
             setLeftNavOpenState: state => ({ // boolean
-                type: 'SET_LEFT_NAV_STATE',
+                type: actions.setLeftNavState,
                 payload: state
             })
         }
