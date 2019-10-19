@@ -1,6 +1,8 @@
+import { actions } from "./actions.actions";
+
 const leftNavOpenReducer = (state = false, { type, payload }) => {
     switch (type) {
-        case 'SET_LEFT_NAV_STATE': {
+        case actions.setLeftNavState: {
             return !!payload;
         }
         default: {
