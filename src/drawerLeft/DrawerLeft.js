@@ -16,8 +16,10 @@ import { connect } from 'react-redux';
 import Collapse from "@material-ui/core/Collapse";
 import {StarBorder} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import DoubleSlider from "../sliders/DoubleSlider";
+import SingleSlider from "../sliders/SingleSlider";
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -225,10 +227,7 @@ const PersistentDrawerLeft = ({
                     <Collapse in={suggestPlayersOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon>
-                                <ListItemText primary="Starred" />
+                                <SingleSlider/>
                             </ListItem>
                         </List>
                     </Collapse>
@@ -241,10 +240,7 @@ const PersistentDrawerLeft = ({
                     <Collapse in={reviewScoreOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon>
-                                <ListItemText primary="Starred" />
+                                <SingleSlider/>
                             </ListItem>
                         </List>
                     </Collapse>
@@ -254,10 +250,9 @@ const PersistentDrawerLeft = ({
                     <Collapse in={numReviewersOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon>
-                                <ListItemText primary="Starred" />
+                                <ListItem button className={classes.nested}>
+                                    <SingleSlider/>
+                                </ListItem>
                             </ListItem>
                         </List>
                     </Collapse>
@@ -308,12 +303,7 @@ const PersistentDrawerLeft = ({
                 </ListItem>
                 <Collapse in={ageRangeOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItem>
+                        <DoubleSlider/>
                     </List>
                 </Collapse>
 
