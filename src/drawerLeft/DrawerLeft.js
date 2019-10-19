@@ -129,7 +129,7 @@ const PersistentDrawerLeft = ({
         });
     };
 
-    const categories = CategoryService.getCategory();
+    const categories = CategoryService.getCategories();
 
     return (
         <div>
