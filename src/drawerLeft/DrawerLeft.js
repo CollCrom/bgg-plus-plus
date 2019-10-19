@@ -11,7 +11,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { compose, withProps } from 'recompose';
 import { connect } from 'react-redux';
 import Collapse from "@material-ui/core/Collapse";
-import MinMaxNumInputTab from '../NavTab/MinMaxNumInputTab';
 import MultiselectTab from '../NavTab/MultiselectTab';
 import RangeSliderTab from '../NavTab/RangeSliderTab';
 import SingleDotSlider from '../NavTab/SingleDotSliderTab';
@@ -101,7 +100,9 @@ const PersistentDrawerLeft = ({
     publisherOpen,
     leftNavOpen,
     setLeftNavOpenState,
-    setTabOpenState
+    setTabOpenState,
+    setPlayingTime,
+    playingTime
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -150,58 +151,128 @@ const PersistentDrawerLeft = ({
                         openClickHandler={toggleTab('playingTime', playingTimeOpen)}
                         openVariable={playingTimeOpen}
                         text="Playing Time"
-                        value={[10, 50]}
+                        value={playingTime}
                         min={1}
-                        max={270}
+                        max={300}
                         marks={[
-                            {value: 1, label: '1 min'},
-                            {value: 30, label: '30 min'},
-                            {value: 60, label: '1 hr'},
-                            {value: 120, label: '2 hrs'},
-                            {value: 180, label: '3 hrs'},
-                            {value: 240, label: '4 hrs'},
-                            {value: 270, label: '∞'}
+                            { value: 1, label: '1 min' },
+                            { value: 30, label: '30 min' },
+                            { value: 60, label: '1 hr' },
+                            { value: 120, label: '2 hrs' },
+                            { value: 180, label: '3 hrs' },
+                            { value: 240, label: '4 hrs' },
+                            { value: 300, label: '5 hrs' }
                         ]}
-                        // onChangeHandler={}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
-                    {/* <RangeSliderTab
+                    <RangeSliderTab
                         openClickHandler={toggleTab('ageRange', ageRangeOpen)}
                         openVariable={ageRangeOpen}
                         text="Age Range"
-                        value={[10, 50]}
-                        // onChangeHandler={}
-                    /> */}
-                    <MinMaxNumInputTab
+                        value={playingTime}
+                        min={1}
+                        max={300}
+                        marks={[
+                            { value: 1, label: '1 min' },
+                            { value: 30, label: '30 min' },
+                            { value: 60, label: '1 hr' },
+                            { value: 120, label: '2 hrs' },
+                            { value: 180, label: '3 hrs' },
+                            { value: 240, label: '4 hrs' },
+                            { value: 300, label: '5 hrs' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                    />
+                    <RangeSliderTab
                         openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
                         openVariable={numPlayersOpen}
                         text="Number of Players"
+                        value={playingTime}
+                        min={1}
+                        max={300}
+                        marks={[
+                            { value: 1, label: '1 min' },
+                            { value: 30, label: '30 min' },
+                            { value: 60, label: '1 hr' },
+                            { value: 120, label: '2 hrs' },
+                            { value: 180, label: '3 hrs' },
+                            { value: 240, label: '4 hrs' },
+                            { value: 300, label: '5 hrs' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
-                    <MinMaxNumInputTab
+                    <RangeSliderTab
                         openClickHandler={toggleTab('suggestPlayers', suggestPlayersOpen)}
                         openVariable={suggestPlayersOpen}
                         text="Suggested Number of Players"
+                        value={playingTime}
+                        min={1}
+                        max={300}
+                        marks={[
+                            { value: 1, label: '1 min' },
+                            { value: 30, label: '30 min' },
+                            { value: 60, label: '1 hr' },
+                            { value: 120, label: '2 hrs' },
+                            { value: 180, label: '3 hrs' },
+                            { value: 240, label: '4 hrs' },
+                            { value: 300, label: '5 hrs' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
                     <SingleDotSlider
                         openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
                         openVariable={reviewScoreOpen}
                         text="Average Review Score"
-                        value={30}
-                        // onChangeHandler={}
+                        value={playingTime}
+                        min={1}
+                        max={300}
+                        marks={[
+                            { value: 1, label: '1 min' },
+                            { value: 30, label: '30 min' },
+                            { value: 60, label: '1 hr' },
+                            { value: 120, label: '2 hrs' },
+                            { value: 180, label: '3 hrs' },
+                            { value: 240, label: '4 hrs' },
+                            { value: 300, label: '5 hrs' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
                     <SingleDotSlider
                         openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
                         openVariable={numReviewersOpen}
                         text="Number of Reviews"
-                        value={30}
-                        // onChangeHandler={}
+                        value={playingTime}
+                        min={1}
+                        max={300}
+                        marks={[
+                            { value: 1, label: '1 min' },
+                            { value: 30, label: '30 min' },
+                            { value: 60, label: '1 hr' },
+                            { value: 120, label: '2 hrs' },
+                            { value: 180, label: '3 hrs' },
+                            { value: 240, label: '4 hrs' },
+                            { value: 300, label: '5 hrs' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
-                    {/* <RangeSliderTab
+                    <RangeSliderTab
                         openClickHandler={toggleTab('complexity', complexityOpen)}
                         openVariable={complexityOpen}
                         text="Complexity"
-                        value={[10, 50]}
-                        // onChangeHandler={}
-                    /> */}
+                        value={playingTime}
+                        min={1}
+                        max={300}
+                        marks={[
+                            { value: 1, label: '1 min' },
+                            { value: 30, label: '30 min' },
+                            { value: 60, label: '1 hr' },
+                            { value: 120, label: '2 hrs' },
+                            { value: 180, label: '3 hrs' },
+                            { value: 240, label: '4 hrs' },
+                            { value: 300, label: '5 hrs' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                    />
                     <MultiselectTab
                         openClickHandler={toggleTab('categories', categoriesOpen)}
                         openVariable={categoriesOpen}
@@ -237,9 +308,10 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({ openTabs, leftNavOpen }) => ({
+        ({ openTabs, leftNavOpen, playingTime }) => ({
             openTabs,
             leftNavOpen,
+            playingTime
         }),
         {
             setTabOpenState: tab => ({ // {tabName: boolean}
@@ -249,6 +321,10 @@ const enhance = compose(
             setLeftNavOpenState: state => ({ // boolean
                 type: actions.setLeftNavState,
                 payload: state
+            }),
+            setPlayingTime: time => ({ // [num, num]
+                type: actions.setPlayingTime,
+                payload: time
             })
         }
     ),

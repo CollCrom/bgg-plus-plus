@@ -27,7 +27,7 @@ const RangeSliderTab = ({
                 <div className={styles.sliderContainer}>
                     <Slider
                         value={value}
-                        onChange={(event, newValue) => {console.log(newValue)}}
+                        onChange={onChangeHandler}
                         valueLabelDisplay="on"
                         min={min}
                         max={max}
