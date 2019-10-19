@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
@@ -24,6 +24,9 @@ const drawerWidth = 360;
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+        overflowY: "scroll",
+        overflowX: "scroll",
+        height: "auto"
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -88,7 +91,6 @@ const useStyles = makeStyles(theme => ({
 }));
 const PersistentDrawerLeft = ({
     playingTimeOpen,
-    leftNavOpenOpen,
     suggestPlayersOpen,
     reviewScoreOpen,
     numReviewersOpen,
@@ -181,6 +183,11 @@ const PersistentDrawerLeft = ({
         });
     };
 
+    const Collapser = withStyles({
+        container: {
+            minHeight: "400px",
+        }
+    })(Collapse);
 
     return (
         <div className={classes.root}>
@@ -211,7 +218,7 @@ const PersistentDrawerLeft = ({
                     <ListItem button onClick={togglePlayingTime}>
                         <ListItemText primary={"Playing Time"} />
                     </ListItem>
-                    <Collapse in={playingTimeOpen} timeout="auto" unmountOnExit>
+                    <Collapser in={playingTimeOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
@@ -220,44 +227,44 @@ const PersistentDrawerLeft = ({
                                 <ListItemText primary="Starred" />
                             </ListItem>
                         </List>
-                    </Collapse>
+                    </Collapser>
                     <ListItem button onClick={toggleSuggestPlayers}>
                             <ListItemText primary={"Suggested Number of Players"} />
                     </ListItem>
-                    <Collapse in={suggestPlayersOpen} timeout="auto" unmountOnExit>
+                    <Collapser in={suggestPlayersOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <SingleSlider/>
                             </ListItem>
                         </List>
-                    </Collapse>
+                    </Collapser>
                 </List>
                 <Divider />
                 <List>
                     <ListItem button onClick={toggleReviewScore}>
                         <ListItemText primary={"Average Review Score"} />
                     </ListItem>
-                    <Collapse in={reviewScoreOpen} timeout="auto" unmountOnExit>
+                    <Collapser in={reviewScoreOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <SingleSlider/>
                             </ListItem>
                         </List>
-                    </Collapse>
+                    </Collapser>
                     <ListItem button onClick={toggleNumReviewers}>
                         <ListItemText primary={"Number of Reviews"} />
                     </ListItem>
-                    <Collapse in={numReviewersOpen} timeout="auto" unmountOnExit>
+                    <Collapser in={numReviewersOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                                 <ListItem button className={classes.nested}>
                                     <SingleSlider/>
                                 </ListItem>
                         </List>
-                    </Collapse>
+                    </Collapser>
                     <ListItem button onClick={toggleComplexity}>
                         <ListItemText primary={"Complexity"} />
                     </ListItem>
-                    <Collapse in={complexityOpen} timeout="auto" unmountOnExit>
+                    <Collapser in={complexityOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
@@ -266,14 +273,14 @@ const PersistentDrawerLeft = ({
                                 <ListItemText primary="Starred" />
                             </ListItem>
                         </List>
-                    </Collapse>
+                    </Collapser>
                 </List>
                 <Divider />
 
                 <ListItem button onClick={toggleNumPlayers}>
                     <ListItemText primary={"Number of players"} />
                 </ListItem>
-                <Collapse in={numPlayersOpen} timeout="auto" unmountOnExit>
+                <Collapser in={numPlayersOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
@@ -282,11 +289,11 @@ const PersistentDrawerLeft = ({
                             <ListItemText primary="Starred" />
                         </ListItem>
                     </List>
-                </Collapse>
+                </Collapser>
                 <ListItem button onClick={toggleCategories}>
                     <ListItemText primary={"Categories"} />
                 </ListItem>
-                <Collapse in={categoriesOpen} timeout="auto" unmountOnExit>
+                <Collapser in={categoriesOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
@@ -295,20 +302,20 @@ const PersistentDrawerLeft = ({
                             <ListItemText primary="Starred" />
                         </ListItem>
                     </List>
-                </Collapse>
+                </Collapser>
                 <ListItem button onClick={toggleAgeRange}>
                     <ListItemText primary={"Age Range"} />
                 </ListItem>
-                <Collapse in={ageRangeOpen} timeout="auto" unmountOnExit>
+                <Collapser in={ageRangeOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <DoubleSlider/>
                     </List>
-                </Collapse>
+                </Collapser>
 
                 <ListItem button onClick={toggleDesigner}>
                     <ListItemText primary={"Designer"} />
                 </ListItem>
-                <Collapse in={designerOpen} timeout="auto" unmountOnExit>
+                <Collapser in={designerOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
@@ -317,11 +324,11 @@ const PersistentDrawerLeft = ({
                             <ListItemText primary="Starred" />
                         </ListItem>
                     </List>
-                </Collapse>
+                </Collapser>
                 <ListItem button>
                     <ListItemText primary={"Artists"}  onClick={toggleArtists}/>
                 </ListItem>
-                <Collapse in={artistsOpen} timeout="auto" unmountOnExit>
+                <Collapser in={artistsOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
@@ -330,11 +337,11 @@ const PersistentDrawerLeft = ({
                             <ListItemText primary="Starred" />
                         </ListItem>
                     </List>
-                </Collapse>
+                </Collapser>
                 <ListItem button>
                     <ListItemText primary={"Publisher"} onClick={togglePublisher}/>
                 </ListItem>
-                <Collapse in={publisherOpen} timeout="auto" unmountOnExit>
+                <Collapser in={publisherOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
@@ -343,7 +350,7 @@ const PersistentDrawerLeft = ({
                             <ListItemText primary="Starred" />
                         </ListItem>
                     </List>
-                </Collapse>
+                </Collapser>
             </Drawer>
             <main
                 className={clsx(classes.content, {
