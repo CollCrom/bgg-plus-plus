@@ -19,6 +19,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Button from "@material-ui/core/Button";
 import Collapse from "@material-ui/core/Collapse";
+import { compose, withProps } from 'recompose';
+import { connect } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -78,7 +80,20 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function PersistentDrawerLeft() {
+const PersistentDrawerLeft = (
+    playingTimeOpen,
+    leftNavOpenOpen,
+    suggestPlayersOpen,
+    reviewScoreOpen,
+    numReviewersOpen,
+    complexityOpen,
+    numPlayersOpen,
+    categoriesOpen,
+    ageRangeOpen,
+    designerOpen,
+    artistsOpen,
+    publisherOpen,
+    ) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -184,3 +199,27 @@ export default function PersistentDrawerLeft() {
         </div>
     );
 }
+
+const enhance = compose(
+    connect(
+        ({openTabs, leftNavOpen}) => ({
+            openTabs,
+            leftNavOpen,
+        })
+    ),
+    withProps(({openTabs}) => ({
+        playingTimeOpen: openTabs.playingTime,
+        suggestPlayersOpen: openTabs.suggestPlayers,
+        reviewScoreOpen: openTabs.reviewScore,
+        numReviewersOpen: openTabs.numReviewers,
+        complexityOpen: openTabs.complexity,
+        numPlayersOpen: openTabs.numPlayers,
+        categoriesOpen: openTabs.categories,
+        ageRangeOpen: openTabs.ageRange,
+        designerOpen: openTabs.designer,
+        artistsOpen: openTabs.artists,
+        publisherOpen: openTabs.publisher,
+    }))
+);
+
+export default enhance(PersistentDrawerLeft);
