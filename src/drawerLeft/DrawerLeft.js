@@ -10,10 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { compose, withProps } from 'recompose';
 import { connect } from 'react-redux';
 
@@ -73,6 +70,16 @@ const useStyles = makeStyles(theme => ({
         }),
         marginLeft: 0,
     },
+    hamburgerContainer: {
+        cursor: 'pointer',
+        height: '70px',
+        width: '70px',
+        margin: '15px 0 0 15px'
+    },
+    hamburgerIcon: {
+        width: '70px',
+        height: '70px'
+    }
 }));
 const PersistentDrawerLeft = ({
     playingTimeOpen,
@@ -173,15 +180,11 @@ const PersistentDrawerLeft = ({
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <IconButton
-                color="inherit"
-                aria-label="open drawer"
+            <div className={classes.hamburgerContainer}
                 onClick={toggleDrawer}
-                edge="start"
-                className={clsx(classes.menuButton, leftNavOpen && classes.hide)}
             >
-                <MenuIcon />
-            </IconButton>
+                <MenuIcon className={classes.hamburgerIcon} />
+            </div>
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
