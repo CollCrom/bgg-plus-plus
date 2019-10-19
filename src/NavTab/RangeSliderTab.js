@@ -3,7 +3,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from "@material-ui/core/Collapse";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
-import DoubleSlider from '../sliders/DoubleSlider';
 import Slider from '@material-ui/core/Slider';
 import styles from './RangeSlider.module.css';
 

@@ -36,6 +36,6 @@ export default {
     designers: [],
     artists: [],
     publishers: [],
-    suggestedPlayers: [1, 99],
-    numberOfPlayers: [1, 99]
+    suggestedPlayers: [1, 30],
+    numberOfPlayers: [1, 30]
 };

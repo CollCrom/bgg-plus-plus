@@ -10,10 +10,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { compose, withProps } from 'recompose';
 import { connect } from 'react-redux';
-import Collapse from "@material-ui/core/Collapse";
 import MultiselectTab from '../NavTab/MultiselectTab';
 import RangeSliderTab from '../NavTab/RangeSliderTab';
-import SingleDotSlider from '../NavTab/SingleDotSliderTab';
 import { actions } from '../reducers/actions.actions';
 
 const drawerWidth = 600;
@@ -102,7 +100,15 @@ const PersistentDrawerLeft = ({
     setLeftNavOpenState,
     setTabOpenState,
     setPlayingTime,
-    playingTime
+    playingTime,
+    setAgeRange,
+    ageRange,
+    setNumberOfPlayers,
+    numberOfPlayers,
+    suggestedPlayers,
+    setSuggestedPlayers,
+    setNumberOfReviewers,
+    numberOfReviewers
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -117,12 +123,6 @@ const PersistentDrawerLeft = ({
             [tabName]: !tabState
         });
     };
-
-    const Collapser = withStyles({
-        container: {
-            minHeight: "400px",
-        }
-    })(Collapse);
 
     return (
         <div>
@@ -169,57 +169,42 @@ const PersistentDrawerLeft = ({
                         openClickHandler={toggleTab('ageRange', ageRangeOpen)}
                         openVariable={ageRangeOpen}
                         text="Age Range"
-                        value={playingTime}
-                        min={1}
-                        max={300}
+                        value={ageRange}
+                        min={0}
+                        max={99}
                         marks={[
-                            { value: 1, label: '1 min' },
-                            { value: 30, label: '30 min' },
-                            { value: 60, label: '1 hr' },
-                            { value: 120, label: '2 hrs' },
-                            { value: 180, label: '3 hrs' },
-                            { value: 240, label: '4 hrs' },
-                            { value: 300, label: '5 hrs' }
+                            { value: 1, label: '1 year' },
+                            { value: 99, label: '99 years' }
                         ]}
-                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                        onChangeHandler={(event, newVal) => { setAgeRange(newVal) }}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
                         openVariable={numPlayersOpen}
                         text="Number of Players"
-                        value={playingTime}
+                        value={numberOfPlayers}
                         min={1}
-                        max={300}
+                        max={30}
                         marks={[
-                            { value: 1, label: '1 min' },
-                            { value: 30, label: '30 min' },
-                            { value: 60, label: '1 hr' },
-                            { value: 120, label: '2 hrs' },
-                            { value: 180, label: '3 hrs' },
-                            { value: 240, label: '4 hrs' },
-                            { value: 300, label: '5 hrs' }
+                            { value: 1, label: '1 player' },
+                            { value: 30, label: '30 players' }
                         ]}
-                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                        onChangeHandler={(event, newVal) => { setNumberOfPlayers(newVal) }}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('suggestPlayers', suggestPlayersOpen)}
                         openVariable={suggestPlayersOpen}
                         text="Suggested Number of Players"
-                        value={playingTime}
+                        value={suggestedPlayers}
                         min={1}
-                        max={300}
+                        max={30}
                         marks={[
-                            { value: 1, label: '1 min' },
-                            { value: 30, label: '30 min' },
-                            { value: 60, label: '1 hr' },
-                            { value: 120, label: '2 hrs' },
-                            { value: 180, label: '3 hrs' },
-                            { value: 240, label: '4 hrs' },
-                            { value: 300, label: '5 hrs' }
+                            { value: 1, label: '1 player' },
+                            { value: 30, label: '30 players' }
                         ]}
-                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                        onChangeHandler={(event, newVal) => { setSuggestedPlayers(newVal) }}
                     />
-                    <SingleDotSlider
+                    {/* <RangeSliderTab
                         openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
                         openVariable={reviewScoreOpen}
                         text="Average Review Score"
@@ -236,26 +221,21 @@ const PersistentDrawerLeft = ({
                             { value: 300, label: '5 hrs' }
                         ]}
                         onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
-                    />
-                    <SingleDotSlider
+                    /> */}
+                    <RangeSliderTab
                         openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
                         openVariable={numReviewersOpen}
                         text="Number of Reviews"
-                        value={playingTime}
-                        min={1}
-                        max={300}
+                        value={numberOfReviewers}
+                        min={100}
+                        max={20000}
                         marks={[
-                            { value: 1, label: '1 min' },
-                            { value: 30, label: '30 min' },
-                            { value: 60, label: '1 hr' },
-                            { value: 120, label: '2 hrs' },
-                            { value: 180, label: '3 hrs' },
-                            { value: 240, label: '4 hrs' },
-                            { value: 300, label: '5 hrs' }
+                            { value: 100, label: '100' },
+                            { value: 20000, label: '20,000' }
                         ]}
-                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                        onChangeHandler={(event, newVal) => { setNumberOfReviewers(newVal) }}
                     />
-                    <RangeSliderTab
+                    {/* <RangeSliderTab
                         openClickHandler={toggleTab('complexity', complexityOpen)}
                         openVariable={complexityOpen}
                         text="Complexity"
@@ -272,27 +252,27 @@ const PersistentDrawerLeft = ({
                             { value: 300, label: '5 hrs' }
                         ]}
                         onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
-                    />
-                    <MultiselectTab
+                    /> */}
+                    {/* <MultiselectTab
                         openClickHandler={toggleTab('categories', categoriesOpen)}
                         openVariable={categoriesOpen}
                         text="Category"
-                    />
-                    <MultiselectTab
+                    /> */}
+                    {/* <MultiselectTab
                         openClickHandler={toggleTab('designer', designerOpen)}
                         openVariable={designerOpen}
                         text="Designer"
-                    />
-                    <MultiselectTab
+                    /> */}
+                    {/* <MultiselectTab
                         openClickHandler={toggleTab('artists', artistsOpen)}
                         openVariable={artistsOpen}
                         text="Artist"
-                    />
-                    <MultiselectTab
+                    /> */}
+                    {/* <MultiselectTab
                         openClickHandler={toggleTab('publisher', publisherOpen)}
                         openVariable={publisherOpen}
                         text="Publisher"
-                    />
+                    /> */}
                 </List>
             </Drawer>
             <main
@@ -308,10 +288,14 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({ openTabs, leftNavOpen, playingTime }) => ({
+        ({ openTabs, leftNavOpen, playingTime, ageRange, numberOfPlayers, suggestedPlayers, numberOfReviewers }) => ({
             openTabs,
             leftNavOpen,
-            playingTime
+            playingTime,
+            ageRange,
+            numberOfPlayers,
+            suggestedPlayers,
+            numberOfReviewers
         }),
         {
             setTabOpenState: tab => ({ // {tabName: boolean}
@@ -325,6 +309,22 @@ const enhance = compose(
             setPlayingTime: time => ({ // [num, num]
                 type: actions.setPlayingTime,
                 payload: time
+            }),
+            setAgeRange: range => ({ // [num, num]
+                type: actions.setAgeRange,
+                payload: range
+            }),
+            setNumberOfPlayers: players => ({ // [num, num]
+                type: actions.setPlayers,
+                payload: players
+            }),
+            setSuggestedPlayers: players => ({ // [num, num]
+                type: actions.setSuggestedPlayer,
+                payload: players
+            }),
+            setNumberOfReviewers: num => ({ // [num, num]
+                type: actions.setNumberOfReviewers,
+                payload: num
             })
         }
     ),
