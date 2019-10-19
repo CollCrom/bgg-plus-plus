@@ -1,4 +1,4 @@
-export default initalState = {
+export default {
     openTabs: {
         playingTime: false,
         suggestPlayers: false,

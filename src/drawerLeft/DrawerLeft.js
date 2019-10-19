@@ -129,25 +129,48 @@ const PersistentDrawerLeft = ({
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-
-
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-
+                    <ListItem button>
+                        <ListItemText primary={"Playing Time"} />
+                    </ListItem>
+                    <ListItem button>
+                            <ListItemText primary={"Suggested Number of Players"} />
                         </ListItem>
-                    ))}
                 </List>
                 <Divider />
                 <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button>
+                        <ListItemText primary={"Average Review Score"} />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemText primary={"Number of Reviews"} />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemText primary={"Complexity"} />
+                    </ListItem>
                 </List>
+                <Divider />
+
+                <ListItem button>
+                    <ListItemText primary={"Number of players"} />
+                </ListItem>
+                <ListItem button>
+                    <ListItemText primary={"Categories"} />
+                </ListItem>
+                <ListItem button>
+                    <ListItemText primary={"Age Range"} />
+                </ListItem>
+
+                <Divider />
+
+                <ListItem button>
+                    <ListItemText primary={"Designer"} />
+                </ListItem>
+                <ListItem button>
+                    <ListItemText primary={"Artists"} />
+                </ListItem>
+                <ListItem button>
+                    <ListItemText primary={"Publisher"} />
+                </ListItem>
             </Drawer>
             <main
                 className={clsx(classes.content, {
