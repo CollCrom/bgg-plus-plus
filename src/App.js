@@ -5,10 +5,6 @@ import './App.css';
 import store from './store';
 import PersistentDrawerLeft from "./drawerLeft/DrawerLeft";
 
-const handleTabClick = (tab) => () => {
-
-}; 
-
 const App = (tabs) => {
   return (
     <Provider store={store}>

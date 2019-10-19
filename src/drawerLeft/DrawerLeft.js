@@ -1,23 +1,20 @@
 import React from 'react';
 import clsx from 'clsx';
-import {makeStyles, useTheme, withStyles} from '@material-ui/core/styles';
+import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import {compose, withProps} from 'recompose';
-import {connect} from 'react-redux';
+import { compose, withProps } from 'recompose';
+import { connect } from 'react-redux';
 import Collapse from "@material-ui/core/Collapse";
-import {ExpandLess, ExpandMore, StarBorder} from "@material-ui/icons";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import DoubleSlider from "../sliders/DoubleSlider";
-import SingleSlider from "../sliders/SingleSlider";
+import MinMaxNumInputTab from '../NavTab/MinMaxNumInputTab';
+import MultiselectTab from '../NavTab/MultiselectTab';
+import RangeSliderTab from '../NavTab/RangeSliderTab';
+import SingleDotSlider from '../NavTab/SingleDotSliderTab';
 
 const drawerWidth = 360;
 
@@ -82,7 +79,7 @@ const useStyles = makeStyles(theme => ({
         cursor: 'pointer',
         height: '70px',
         width: '70px',
-        margin: '15px 0 0 15px'
+        padding: '15px 0 0 15px'
     },
     hamburgerIcon: {
         width: '70px',
@@ -90,21 +87,21 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 const PersistentDrawerLeft = ({
-                                  playingTimeOpen,
-                                  suggestPlayersOpen,
-                                  reviewScoreOpen,
-                                  numReviewersOpen,
-                                  complexityOpen,
-                                  numPlayersOpen,
-                                  categoriesOpen,
-                                  ageRangeOpen,
-                                  designerOpen,
-                                  artistsOpen,
-                                  publisherOpen,
-                                  leftNavOpen,
-                                  setLeftNavOpenState,
-                                  setTabOpenState
-                              }) => {
+    playingTimeOpen,
+    suggestPlayersOpen,
+    reviewScoreOpen,
+    numReviewersOpen,
+    complexityOpen,
+    numPlayersOpen,
+    categoriesOpen,
+    ageRangeOpen,
+    designerOpen,
+    artistsOpen,
+    publisherOpen,
+    leftNavOpen,
+    setLeftNavOpenState,
+    setTabOpenState
+}) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -113,73 +110,9 @@ const PersistentDrawerLeft = ({
         setLeftNavOpenState(leftNavOpen);
     };
 
-    const togglePlayingTime = () => {
-        playingTimeOpen = !playingTimeOpen;
+    const toggleTab = (tabName, tabState) => () => {
         setTabOpenState({
-            playingTime: playingTimeOpen
-        });
-    };
-    const togglePublisher = () => {
-        publisherOpen = !publisherOpen;
-        setTabOpenState({
-            publisher: publisherOpen
-        });
-    };
-    const toggleArtists = () => {
-        artistsOpen = !artistsOpen;
-        setTabOpenState({
-            artists: artistsOpen
-        });
-    };
-    const toggleDesigner = () => {
-        designerOpen = !designerOpen;
-        setTabOpenState({
-            designer: designerOpen
-        });
-    };
-    const toggleAgeRange = () => {
-        ageRangeOpen = !ageRangeOpen;
-        setTabOpenState({
-            ageRange: ageRangeOpen
-        });
-    };
-    const toggleCategories = () => {
-        categoriesOpen = !categoriesOpen;
-        setTabOpenState({
-            categories: categoriesOpen
-        });
-    };
-
-    const toggleNumPlayers = () => {
-        numPlayersOpen = !numPlayersOpen;
-        setTabOpenState({
-            numPlayers: numPlayersOpen
-        });
-    };
-
-    const toggleComplexity = () => {
-        complexityOpen = !complexityOpen;
-        setTabOpenState({
-            complexity: complexityOpen
-        });
-    };
-
-    const toggleNumReviewers = () => {
-        numReviewersOpen = !numReviewersOpen;
-        setTabOpenState({
-            numReviewers: numReviewersOpen
-        });
-    };
-    const toggleReviewScore = () => {
-        reviewScoreOpen = !reviewScoreOpen;
-        setTabOpenState({
-            reviewScore: reviewScoreOpen
-        });
-    };
-    const toggleSuggestPlayers = () => {
-        suggestPlayersOpen = !suggestPlayersOpen;
-        setTabOpenState({
-            suggestPlayers: suggestPlayersOpen
+            [tabName]: !tabState
         });
     };
 
@@ -190,12 +123,12 @@ const PersistentDrawerLeft = ({
     })(Collapse);
 
     return (
-        <div className={classes.root}>
-            <CssBaseline/>
+        <div>
+            <CssBaseline />
             <div className={classes.hamburgerContainer}
-                 onClick={toggleDrawer}
+                onClick={toggleDrawer}
             >
-                <MenuIcon className={classes.hamburgerIcon}/>
+                <MenuIcon className={classes.hamburgerIcon} />
             </div>
             <Drawer
                 className={classes.drawer}
@@ -208,167 +141,73 @@ const PersistentDrawerLeft = ({
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={toggleDrawer}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
-                <Divider/>
-
-
                 <List>
-                    <ListItem button onClick={togglePlayingTime}>
-                        <ListItemText primary={"Playing Time"}/>
-                        {playingTimeOpen ? <ExpandLess/> : <ExpandMore/>}
-                    </ListItem>
-                    <Collapser in={playingTimeOpen} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <StarBorder/>
-                                </ListItemIcon>
-                                <ListItemText primary="Starred"/>
-                            </ListItem>
-                        </List>
-                    </Collapser>
-                    <ListItem button onClick={toggleSuggestPlayers}>
-                        <ListItemText primary={"Suggested Number of Players"}/>
-                        {suggestPlayersOpen ? <ExpandLess/> : <ExpandMore/>}
-                    </ListItem>
-                    <Collapser in={suggestPlayersOpen} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <SingleSlider/>
-                            </ListItem>
-                        </List>
-                    </Collapser>
+                    <RangeSliderTab
+                        openClickHandler={toggleTab('playingTime', playingTimeOpen)}
+                        openVariable={playingTimeOpen}
+                        text="Playing Time"
+                    />
+                    <RangeSliderTab
+                        openClickHandler={toggleTab('ageRange', ageRangeOpen)}
+                        openVariable={ageRangeOpen}
+                        text="Age Range"
+                    />
+                    <MinMaxNumInputTab
+                        openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
+                        openVariable={numPlayersOpen}
+                        text="Number of Players"
+                    />
+                    <MinMaxNumInputTab
+                        openClickHandler={toggleTab('suggestPlayers', suggestPlayersOpen)}
+                        openVariable={suggestPlayersOpen}
+                        text="Suggested Number of Players"
+                    />
+                    <SingleDotSlider
+                        openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
+                        openVariable={reviewScoreOpen}
+                        text="Average Review Score"
+                    />
+                    <SingleDotSlider
+                        openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
+                        openVariable={numReviewersOpen}
+                        text="Number of Reviews"
+                    />
+                    <RangeSliderTab
+                        openClickHandler={toggleTab('complexity', complexityOpen)}
+                        openVariable={complexityOpen}
+                        text="Complexity"
+                    />
+                    <MultiselectTab
+                        openClickHandler={toggleTab('categories', categoriesOpen)}
+                        openVariable={categoriesOpen}
+                        text="Category"
+                    />
+                    <MultiselectTab
+                        openClickHandler={toggleTab('designer', designerOpen)}
+                        openVariable={designerOpen}
+                        text="Designer"
+                    />
+                    <MultiselectTab
+                        openClickHandler={toggleTab('artists', artistsOpen)}
+                        openVariable={artistsOpen}
+                        text="Artist"
+                    />
+                    <MultiselectTab
+                        openClickHandler={toggleTab('publisher', publisherOpen)}
+                        openVariable={publisherOpen}
+                        text="Publisher"
+                    />
                 </List>
-                <Divider/>
-                <List>
-                    <ListItem button onClick={toggleReviewScore}>
-                        <ListItemText primary={"Average Review Score"}/>
-                        {reviewScoreOpen ? <ExpandLess/> : <ExpandMore/>}
-                    </ListItem>
-                    <Collapser in={reviewScoreOpen} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <SingleSlider/>
-                            </ListItem>
-                        </List>
-                    </Collapser>
-                    <ListItem button onClick={toggleNumReviewers}>
-                        <ListItemText primary={"Number of Reviews"}/>
-                        {numReviewersOpen ? <ExpandLess/> : <ExpandMore/>}
-                    </ListItem>
-                    <Collapser in={numReviewersOpen} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <SingleSlider/>
-                            </ListItem>
-                        </List>
-                    </Collapser>
-                    <ListItem button onClick={toggleComplexity}>
-                        <ListItemText primary={"Complexity"}/>
-                        {complexityOpen ? <ExpandLess/> : <ExpandMore/>}
-                    </ListItem>
-                    <Collapser in={complexityOpen} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <StarBorder/>
-                                </ListItemIcon>
-                                <ListItemText primary="Starred"/>
-                            </ListItem>
-                        </List>
-                    </Collapser>
-                </List>
-                <Divider/>
-
-                <ListItem button onClick={toggleNumPlayers}>
-                    <ListItemText primary={"Number of players"}/>
-                    {numPlayersOpen ? <ExpandLess/> : <ExpandMore/>}
-                </ListItem>
-                <Collapser in={numPlayersOpen} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <StarBorder/>
-                            </ListItemIcon>
-                            <ListItemText primary="Starred"/>
-                        </ListItem>
-                    </List>
-                </Collapser>
-                <ListItem button onClick={toggleCategories}>
-                    <ListItemText primary={"Categories"}/>
-                    {categoriesOpen ? <ExpandLess/> : <ExpandMore/>}
-                </ListItem>
-                <Collapser in={categoriesOpen} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <StarBorder/>
-                            </ListItemIcon>
-                            <ListItemText primary="Starred"/>
-                        </ListItem>
-                    </List>
-                </Collapser>
-                <ListItem button onClick={toggleAgeRange}>
-                    <ListItemText primary={"Age Range"}/>
-                    {ageRangeOpen ? <ExpandLess/> : <ExpandMore/>}
-                </ListItem>
-                <Collapser in={ageRangeOpen} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <DoubleSlider/>
-                    </List>
-                </Collapser>
-
-                <ListItem button onClick={toggleDesigner}>
-                    <ListItemText primary={"Designer"}/>
-                    {designerOpen ? <ExpandLess/> : <ExpandMore/>}
-                </ListItem>
-                <Collapser in={designerOpen} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <StarBorder/>
-                            </ListItemIcon>
-                            <ListItemText primary="Starred"/>
-                        </ListItem>
-                    </List>
-                </Collapser>
-                <ListItem button>
-                    <ListItemText primary={"Artists"} onClick={toggleArtists}/>
-                    {artistsOpen ? <ExpandLess/> : <ExpandMore/>}
-                </ListItem>
-                <Collapser in={artistsOpen} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <StarBorder/>
-                            </ListItemIcon>
-                            <ListItemText primary="Starred"/>
-                        </ListItem>
-                    </List>
-                </Collapser>
-                <ListItem button>
-                    <ListItemText primary={"Publisher"} onClick={togglePublisher}/>
-                    {publisherOpen ? <ExpandLess/> : <ExpandMore/>}
-                </ListItem>
-                <Collapser in={publisherOpen} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <StarBorder/>
-                            </ListItemIcon>
-                            <ListItemText primary="Starred"/>
-                        </ListItem>
-                    </List>
-                </Collapser>
             </Drawer>
             <main
                 className={clsx(classes.content, {
                     [classes.contentShift]: leftNavOpen,
                 })}
             >
-                <div className={classes.drawerHeader}/>
+                <div className={classes.drawerHeader} />
             </main>
         </div>
     );
@@ -376,7 +215,7 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({openTabs, leftNavOpen}) => ({
+        ({ openTabs, leftNavOpen }) => ({
             openTabs,
             leftNavOpen,
         }),
@@ -391,7 +230,7 @@ const enhance = compose(
             })
         }
     ),
-    withProps(({openTabs}) => ({
+    withProps(({ openTabs }) => ({
         playingTimeOpen: openTabs.playingTime,
         suggestPlayersOpen: openTabs.suggestPlayers,
         reviewScoreOpen: openTabs.reviewScore,
