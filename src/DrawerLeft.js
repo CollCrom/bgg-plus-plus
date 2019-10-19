@@ -92,17 +92,19 @@ const PersistentDrawerLeft = ({
         designerOpen,
         artistsOpen,
         publisherOpen,
+        leftNavOpen,
+        setLeftNavOpenState
     }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
-        setOpen(true);
+        setLeftNavOpenState(true);
     };
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        setLeftNavOpenState(false);
     };
 
     return (
@@ -133,7 +135,7 @@ const PersistentDrawerLeft = ({
                 className={classes.drawer}
                 variant="persistent"
                 anchor="left"
-                open={open}
+                open={leftNavOpen}
                 classes={{
                     paper: classes.drawerPaper,
                 }}
