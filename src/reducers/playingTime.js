@@ -1,11 +1,11 @@
 import {actions} from './actions.actions'
 
-const playingTimeReducer = (state={}, { type, payload }) => {
+const playingTime = (state = [], { type, payload }) => {
   switch(type) {
     case actions.setPlayingTime: {
       return {
         ...state,
-        ...payload,
+        playingTime: payload
       }
     }
     default: {
@@ -14,4 +14,4 @@ const playingTimeReducer = (state={}, { type, payload }) => {
   }
 }
 
-export default playingTimeReducer;
+export default playingTime;

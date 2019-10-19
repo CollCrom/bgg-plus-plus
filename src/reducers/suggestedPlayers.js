@@ -1,21 +1,11 @@
 import { actions } from './actions.actions'
 
-const suggestedPlayers = (state = {}, { type, payload }) => {
+const suggestedPlayers = (state = [], { type, payload }) => {
   switch(type) {
-    case actions.setMinSuggestedPlayer: {
+    case actions.setSuggestedPlayer: {
       return {
         ...state,
-        suggestPlayers: {
-          min: payload
-        }
-      }
-    }
-    case actions.setMaxSuggestedPlayers: {
-      return {
-        ...state,
-        suggestPlayers: {
-          max: payload
-        }
+        suggestPlayers: payload
       }
     }
     default: {

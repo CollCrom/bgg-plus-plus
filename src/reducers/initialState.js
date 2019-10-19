@@ -20,15 +20,9 @@ export default {
     averageReviewScore: 0,
     numberOfReviewers: 0,
     categories: [],
-    designer: [],
+    designers: [],
     artists: [],
-    publisher: [],
-    suggestPlayers: {
-        min: 1,
-        max: 99
-    },
-    numberOfPlayers: {
-        min: 1,
-        max: 99
-    }
+    publishers: [],
+    suggestedPlayers: [1, 99],
+    numberOfPlayers: [1, 99]
 };

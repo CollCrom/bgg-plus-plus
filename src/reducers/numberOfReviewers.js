@@ -1,7 +1,7 @@
 import { actions } from "./actions.actions";
 
 
-const numberOfReviewers = (state={}, { type, payload}) => {
+const numberOfReviewers = (state=0, { type, payload}) => {
   switch(type) {
     case actions.setNumberOfReviewers: {
       return {
