@@ -4,11 +4,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from "@material-ui/core/Collapse";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import DoubleSlider from '../sliders/DoubleSlider';
+import Slider from '@material-ui/core/Slider';
+import styles from './RangeSlider.module.css';
 
 const RangeSliderTab = ({
     openClickHandler,
     openVariable,
-    text
+    text,
+    value,
+    onChangeHandler,
+    min,
+    max,
+    marks
 }) => {
     return (
         <>
@@ -17,7 +24,16 @@ const RangeSliderTab = ({
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openVariable} timeout="auto">
-                {DoubleSlider()}
+                <div className={styles.sliderContainer}>
+                    <Slider
+                        value={value}
+                        onChange={(event, newValue) => {console.log(newValue)}}
+                        valueLabelDisplay="on"
+                        min={min}
+                        max={max}
+                        marks={marks}
+                    />
+                </div>
             </Collapse>
         </>
     );

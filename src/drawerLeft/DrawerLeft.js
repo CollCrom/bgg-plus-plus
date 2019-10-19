@@ -17,7 +17,7 @@ import RangeSliderTab from '../NavTab/RangeSliderTab';
 import SingleDotSlider from '../NavTab/SingleDotSliderTab';
 import { actions } from '../reducers/actions.actions';
 
-const drawerWidth = 360;
+const drawerWidth = 600;
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -150,12 +150,27 @@ const PersistentDrawerLeft = ({
                         openClickHandler={toggleTab('playingTime', playingTimeOpen)}
                         openVariable={playingTimeOpen}
                         text="Playing Time"
+                        value={[10, 50]}
+                        min={1}
+                        max={270}
+                        marks={[
+                            {value: 1, label: '1 min'},
+                            {value: 30, label: '30 min'},
+                            {value: 60, label: '1 hr'},
+                            {value: 120, label: '2 hrs'},
+                            {value: 180, label: '3 hrs'},
+                            {value: 240, label: '4 hrs'},
+                            {value: 270, label: '∞'}
+                        ]}
+                        // onChangeHandler={}
                     />
-                    <RangeSliderTab
+                    {/* <RangeSliderTab
                         openClickHandler={toggleTab('ageRange', ageRangeOpen)}
                         openVariable={ageRangeOpen}
                         text="Age Range"
-                    />
+                        value={[10, 50]}
+                        // onChangeHandler={}
+                    /> */}
                     <MinMaxNumInputTab
                         openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
                         openVariable={numPlayersOpen}
@@ -170,17 +185,23 @@ const PersistentDrawerLeft = ({
                         openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
                         openVariable={reviewScoreOpen}
                         text="Average Review Score"
+                        value={30}
+                        // onChangeHandler={}
                     />
                     <SingleDotSlider
                         openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
                         openVariable={numReviewersOpen}
                         text="Number of Reviews"
+                        value={30}
+                        // onChangeHandler={}
                     />
-                    <RangeSliderTab
+                    {/* <RangeSliderTab
                         openClickHandler={toggleTab('complexity', complexityOpen)}
                         openVariable={complexityOpen}
                         text="Complexity"
-                    />
+                        value={[10, 50]}
+                        // onChangeHandler={}
+                    /> */}
                     <MultiselectTab
                         openClickHandler={toggleTab('categories', categoriesOpen)}
                         openVariable={categoriesOpen}
