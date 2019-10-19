@@ -88,18 +88,87 @@ const PersistentDrawerLeft = ({
     artistsOpen,
     publisherOpen,
     leftNavOpen,
-    setLeftNavOpenState
+    setLeftNavOpenState,
+      setTabOpenState
 }) => {
     const classes = useStyles();
     const theme = useTheme();
 
-    const handleDrawerOpen = () => {
-        setLeftNavOpenState(true);
+    const toggleDrawer = () => {
+        leftNavOpen = !leftNavOpen;
+        setLeftNavOpenState(leftNavOpen);
     };
 
-    const handleDrawerClose = () => {
-        setLeftNavOpenState(false);
+    const togglePlayingTime = () => {
+        playingTimeOpen = !playingTimeOpen;
+        setTabOpenState({
+            playingTime: playingTimeOpen
+        });
     };
+    const togglePublisher = () => {
+        publisherOpen = !publisherOpen;
+        setTabOpenState({
+            publisher: publisherOpen
+        });
+    };
+    const toggleArtists = () => {
+        artistsOpen = !artistsOpen;
+        setTabOpenState({
+            artists: artistsOpen
+        });
+    };
+    const toggleDesigner = () => {
+        designerOpen = !designerOpen;
+        setTabOpenState({
+            designer: designerOpen
+        });
+    };
+    const toggleAgeRange = () => {
+        ageRangeOpen = !ageRangeOpen;
+        setTabOpenState({
+            ageRange: ageRangeOpen
+        });
+    };
+    const toggleCategories = () => {
+        categoriesOpen = !categoriesOpen;
+        setTabOpenState({
+            categories: categoriesOpen
+        });
+    };
+
+    const toggleNumPlayers = () => {
+        numPlayersOpen = !numPlayersOpen;
+        setTabOpenState({
+            numPlayers: numPlayersOpen
+        });
+    };
+
+    const toggleComplexity = () => {
+        complexityOpen = !complexityOpen;
+        setTabOpenState({
+            complexity: complexityOpen
+        });
+    };
+
+    const toggleNumReviewers = () => {
+        numReviewersOpen = !numReviewersOpen;
+        setTabOpenState({
+            numReviewers: numReviewersOpen
+        });
+    };
+    const toggleReviewScore = () => {
+        reviewScoreOpen = !reviewScoreOpen;
+        setTabOpenState({
+            reviewScore: reviewScoreOpen
+        });
+    };
+    const toggleSuggestPlayers = () => {
+        suggestPlayersOpen = !suggestPlayersOpen;
+        setTabOpenState({
+            suggestPlayers: suggestPlayersOpen
+        });
+    };
+
 
     return (
         <div className={classes.root}>
@@ -107,7 +176,7 @@ const PersistentDrawerLeft = ({
             <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                onClick={handleDrawerOpen}
+                onClick={toggleDrawer}
                 edge="start"
                 className={clsx(classes.menuButton, leftNavOpen && classes.hide)}
             >
@@ -123,53 +192,53 @@ const PersistentDrawerLeft = ({
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={toggleDrawer}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button>
+                    <ListItem button onClick={togglePlayingTime}>
                         <ListItemText primary={"Playing Time"} />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={toggleSuggestPlayers}>
                             <ListItemText primary={"Suggested Number of Players"} />
                         </ListItem>
                 </List>
                 <Divider />
                 <List>
-                    <ListItem button>
+                    <ListItem button onClick={toggleReviewScore}>
                         <ListItemText primary={"Average Review Score"} />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={toggleNumReviewers}>
                         <ListItemText primary={"Number of Reviews"} />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={toggleComplexity}>
                         <ListItemText primary={"Complexity"} />
                     </ListItem>
                 </List>
                 <Divider />
 
-                <ListItem button>
+                <ListItem button onClick={toggleNumPlayers}>
                     <ListItemText primary={"Number of players"} />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={toggleCategories}>
                     <ListItemText primary={"Categories"} />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={toggleAgeRange}>
                     <ListItemText primary={"Age Range"} />
                 </ListItem>
 
                 <Divider />
 
-                <ListItem button>
+                <ListItem button onClick={toggleDesigner}>
                     <ListItemText primary={"Designer"} />
                 </ListItem>
                 <ListItem button>
-                    <ListItemText primary={"Artists"} />
+                    <ListItemText primary={"Artists"}  onClick={toggleArtists}/>
                 </ListItem>
                 <ListItem button>
-                    <ListItemText primary={"Publisher"} />
+                    <ListItemText primary={"Publisher"} onClick={togglePublisher}/>
                 </ListItem>
             </Drawer>
             <main
