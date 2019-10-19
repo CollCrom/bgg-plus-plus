@@ -130,6 +130,9 @@ const PersistentDrawerLeft = ({
     };
 
     const categories = CategoryService.getCategories();
+    const artists = CategoryService.getArtists();
+    const designers = CategoryService.getDesigners();
+    const publishers = CategoryService.getPublishers();
 
     return (
         <div>
@@ -248,19 +251,19 @@ const PersistentDrawerLeft = ({
                         openClickHandler={toggleTab('designer', designerOpen)}
                         openVariable={designerOpen}
                         text={"Designer"}
-                        names = {categories}
+                        names = {designers}
                     />
                     <MultiselectTab
                         openClickHandler={toggleTab('artists', artistsOpen)}
                         openVariable={artistsOpen}
                         text={"Artists"}
-                        names = {categories}
+                        names = {artists}
                     />
                     <MultiselectTab
                         openClickHandler={toggleTab('publisher', publisherOpen)}
                         openVariable={publisherOpen}
                         text={"Publisher"}
-                        names = {categories}
+                        names = {publishers}
                     />
                     {/* <RangeSliderTab
                         openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
