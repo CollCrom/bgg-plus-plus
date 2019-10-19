@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import MultiselectTab from '../NavTab/MultiselectTab';
 import RangeSliderTab from '../NavTab/RangeSliderTab';
 import { actions } from '../reducers/actions.actions';
+import CategoryService from "../service/CategoryService";
 
 const drawerWidth = 600;
 
@@ -128,6 +129,8 @@ const PersistentDrawerLeft = ({
         });
     };
 
+    const categories = CategoryService.getCategory();
+
     return (
         <div>
             <CssBaseline />
@@ -221,6 +224,13 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setComplexity(newVal) }}
                     />
 
+                    <MultiselectTab
+                        openClickHandler={toggleTab('categories', categoriesOpen)}
+                        openVariable={categoriesOpen}
+                        text={"Categories"}
+                        names = {categories}
+                    />
+
                     <RangeSliderTab
                         openClickHandler={toggleTab('ageRange', ageRangeOpen)}
                         openVariable={ageRangeOpen}
@@ -233,6 +243,24 @@ const PersistentDrawerLeft = ({
                             { value: 99, label: '99 years' }
                         ]}
                         onChangeHandler={(event, newVal) => { setAgeRange(newVal) }}
+                    />
+                    <MultiselectTab
+                        openClickHandler={toggleTab('designer', designerOpen)}
+                        openVariable={designerOpen}
+                        text={"Designer"}
+                        names = {categories}
+                    />
+                    <MultiselectTab
+                        openClickHandler={toggleTab('artists', artistsOpen)}
+                        openVariable={artistsOpen}
+                        text={"Artists"}
+                        names = {categories}
+                    />
+                    <MultiselectTab
+                        openClickHandler={toggleTab('publisher', publisherOpen)}
+                        openVariable={publisherOpen}
+                        text={"Publisher"}
+                        names = {categories}
                     />
                     {/* <RangeSliderTab
                         openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
