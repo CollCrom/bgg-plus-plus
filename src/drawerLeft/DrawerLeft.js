@@ -11,10 +11,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { compose, withProps } from 'recompose';
-import { connect } from 'react-redux';
+import {compose, withProps} from 'recompose';
+import {connect} from 'react-redux';
 import Collapse from "@material-ui/core/Collapse";
-import {StarBorder} from "@material-ui/icons";
+import {ExpandLess, ExpandMore, StarBorder} from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import DoubleSlider from "../sliders/DoubleSlider";
 import SingleSlider from "../sliders/SingleSlider";
@@ -90,21 +90,21 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 const PersistentDrawerLeft = ({
-    playingTimeOpen,
-    suggestPlayersOpen,
-    reviewScoreOpen,
-    numReviewersOpen,
-    complexityOpen,
-    numPlayersOpen,
-    categoriesOpen,
-    ageRangeOpen,
-    designerOpen,
-    artistsOpen,
-    publisherOpen,
-    leftNavOpen,
-    setLeftNavOpenState,
-      setTabOpenState
-}) => {
+                                  playingTimeOpen,
+                                  suggestPlayersOpen,
+                                  reviewScoreOpen,
+                                  numReviewersOpen,
+                                  complexityOpen,
+                                  numPlayersOpen,
+                                  categoriesOpen,
+                                  ageRangeOpen,
+                                  designerOpen,
+                                  artistsOpen,
+                                  publisherOpen,
+                                  leftNavOpen,
+                                  setLeftNavOpenState,
+                                  setTabOpenState
+                              }) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -191,11 +191,11 @@ const PersistentDrawerLeft = ({
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
             <div className={classes.hamburgerContainer}
-                onClick={toggleDrawer}
+                 onClick={toggleDrawer}
             >
-                <MenuIcon className={classes.hamburgerIcon} />
+                <MenuIcon className={classes.hamburgerIcon}/>
             </div>
             <Drawer
                 className={classes.drawer}
@@ -208,28 +208,30 @@ const PersistentDrawerLeft = ({
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={toggleDrawer}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                     </IconButton>
                 </div>
-                <Divider />
+                <Divider/>
 
 
                 <List>
                     <ListItem button onClick={togglePlayingTime}>
-                        <ListItemText primary={"Playing Time"} />
+                        <ListItemText primary={"Playing Time"}/>
+                        {playingTimeOpen ? <ExpandLess/> : <ExpandMore/>}
                     </ListItem>
                     <Collapser in={playingTimeOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
-                                    <StarBorder />
+                                    <StarBorder/>
                                 </ListItemIcon>
-                                <ListItemText primary="Starred" />
+                                <ListItemText primary="Starred"/>
                             </ListItem>
                         </List>
                     </Collapser>
                     <ListItem button onClick={toggleSuggestPlayers}>
-                            <ListItemText primary={"Suggested Number of Players"} />
+                        <ListItemText primary={"Suggested Number of Players"}/>
+                        {suggestPlayersOpen ? <ExpandLess/> : <ExpandMore/>}
                     </ListItem>
                     <Collapser in={suggestPlayersOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -239,10 +241,11 @@ const PersistentDrawerLeft = ({
                         </List>
                     </Collapser>
                 </List>
-                <Divider />
+                <Divider/>
                 <List>
                     <ListItem button onClick={toggleReviewScore}>
-                        <ListItemText primary={"Average Review Score"} />
+                        <ListItemText primary={"Average Review Score"}/>
+                        {reviewScoreOpen ? <ExpandLess/> : <ExpandMore/>}
                     </ListItem>
                     <Collapser in={reviewScoreOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
@@ -252,59 +255,64 @@ const PersistentDrawerLeft = ({
                         </List>
                     </Collapser>
                     <ListItem button onClick={toggleNumReviewers}>
-                        <ListItemText primary={"Number of Reviews"} />
+                        <ListItemText primary={"Number of Reviews"}/>
+                        {numReviewersOpen ? <ExpandLess/> : <ExpandMore/>}
                     </ListItem>
                     <Collapser in={numReviewersOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                                <ListItem button className={classes.nested}>
-                                    <SingleSlider/>
-                                </ListItem>
+                            <ListItem button className={classes.nested}>
+                                <SingleSlider/>
+                            </ListItem>
                         </List>
                     </Collapser>
                     <ListItem button onClick={toggleComplexity}>
-                        <ListItemText primary={"Complexity"} />
+                        <ListItemText primary={"Complexity"}/>
+                        {complexityOpen ? <ExpandLess/> : <ExpandMore/>}
                     </ListItem>
                     <Collapser in={complexityOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
-                                    <StarBorder />
+                                    <StarBorder/>
                                 </ListItemIcon>
-                                <ListItemText primary="Starred" />
+                                <ListItemText primary="Starred"/>
                             </ListItem>
                         </List>
                     </Collapser>
                 </List>
-                <Divider />
+                <Divider/>
 
                 <ListItem button onClick={toggleNumPlayers}>
-                    <ListItemText primary={"Number of players"} />
+                    <ListItemText primary={"Number of players"}/>
+                    {numPlayersOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapser in={numPlayersOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                     </List>
                 </Collapser>
                 <ListItem button onClick={toggleCategories}>
-                    <ListItemText primary={"Categories"} />
+                    <ListItemText primary={"Categories"}/>
+                    {categoriesOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapser in={categoriesOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                     </List>
                 </Collapser>
                 <ListItem button onClick={toggleAgeRange}>
-                    <ListItemText primary={"Age Range"} />
+                    <ListItemText primary={"Age Range"}/>
+                    {ageRangeOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapser in={ageRangeOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
@@ -313,41 +321,44 @@ const PersistentDrawerLeft = ({
                 </Collapser>
 
                 <ListItem button onClick={toggleDesigner}>
-                    <ListItemText primary={"Designer"} />
+                    <ListItemText primary={"Designer"}/>
+                    {designerOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapser in={designerOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                     </List>
                 </Collapser>
                 <ListItem button>
-                    <ListItemText primary={"Artists"}  onClick={toggleArtists}/>
+                    <ListItemText primary={"Artists"} onClick={toggleArtists}/>
+                    {artistsOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapser in={artistsOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                     </List>
                 </Collapser>
                 <ListItem button>
                     <ListItemText primary={"Publisher"} onClick={togglePublisher}/>
+                    {publisherOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapser in={publisherOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                     </List>
                 </Collapser>
@@ -357,7 +368,7 @@ const PersistentDrawerLeft = ({
                     [classes.contentShift]: leftNavOpen,
                 })}
             >
-                <div className={classes.drawerHeader} />
+                <div className={classes.drawerHeader}/>
             </main>
         </div>
     );
@@ -365,7 +376,7 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({ openTabs, leftNavOpen }) => ({
+        ({openTabs, leftNavOpen}) => ({
             openTabs,
             leftNavOpen,
         }),
@@ -380,7 +391,7 @@ const enhance = compose(
             })
         }
     ),
-    withProps(({ openTabs }) => ({
+    withProps(({openTabs}) => ({
         playingTimeOpen: openTabs.playingTime,
         suggestPlayersOpen: openTabs.suggestPlayers,
         reviewScoreOpen: openTabs.reviewScore,
