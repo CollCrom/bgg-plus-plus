@@ -6,6 +6,7 @@ import store from './store';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
+import PersistentDrawerLeft from "./DrawerLeft";
 
 const handleTabClick = (tab) => () => {
 
@@ -15,12 +16,7 @@ const App = (tabs) => {
   return (
     <Provider store={store}>
       <div className="App">
-        <Drawer open="true" variant="persistent">
-          <Button >Playing Time</Button>
-          <Collapse>
-            Some time
-          </Collapse>
-        </Drawer>
+        <PersistentDrawerLeft/>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
