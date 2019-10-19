@@ -108,7 +108,11 @@ const PersistentDrawerLeft = ({
     suggestedPlayers,
     setSuggestedPlayers,
     setNumberOfReviewers,
-    numberOfReviewers
+    complexity,
+    setComplexity,
+    setAverageReviewScore,
+    averageReviewScore,
+    numberOfReviewers,
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -166,19 +170,6 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
                     <RangeSliderTab
-                        openClickHandler={toggleTab('ageRange', ageRangeOpen)}
-                        openVariable={ageRangeOpen}
-                        text="Age Range"
-                        value={ageRange}
-                        min={0}
-                        max={99}
-                        marks={[
-                            { value: 1, label: '1 year' },
-                            { value: 99, label: '99 years' }
-                        ]}
-                        onChangeHandler={(event, newVal) => { setAgeRange(newVal) }}
-                    />
-                    <RangeSliderTab
                         openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
                         openVariable={numPlayersOpen}
                         text="Number of Players"
@@ -192,17 +183,56 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setNumberOfPlayers(newVal) }}
                     />
                     <RangeSliderTab
-                        openClickHandler={toggleTab('suggestPlayers', suggestPlayersOpen)}
-                        openVariable={suggestPlayersOpen}
-                        text="Suggested Number of Players"
-                        value={suggestedPlayers}
-                        min={1}
-                        max={30}
+                        openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
+                        openVariable={reviewScoreOpen}
+                        text="Average Review Score"
+                        value={averageReviewScore}
+                        min={0}
+                        max={10.0}
                         marks={[
-                            { value: 1, label: '1 player' },
-                            { value: 30, label: '30 players' }
+                            { value: 0, label: '0.0' },
+                            { value: 10.0, label: '10.0' }
                         ]}
-                        onChangeHandler={(event, newVal) => { setSuggestedPlayers(newVal) }}
+                        onChangeHandler={(event, newVal) => { setAverageReviewScore(newVal) }}
+                    />
+                    <RangeSliderTab
+                        openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
+                        openVariable={numReviewersOpen}
+                        text="Number of Reviews"
+                        value={numberOfReviewers}
+                        min={100}
+                        max={20000}
+                        marks={[
+                            { value: 100, label: '100' },
+                            { value: 20000, label: '20,000' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setNumberOfReviewers(newVal) }}
+                    />
+                    <RangeSliderTab
+                        openClickHandler={toggleTab('complexity', complexityOpen)}
+                        openVariable={complexityOpen}
+                        text="Complexity"
+                        value={complexity}
+                        min={0}
+                        max={5.0}
+                        marks={[
+                            { value: 0, label: '0.0' },
+                        ]}
+                        onChangeHandler={(event, newVal) => { setComplexity(newVal) }}
+                    />
+
+                    <RangeSliderTab
+                        openClickHandler={toggleTab('ageRange', ageRangeOpen)}
+                        openVariable={ageRangeOpen}
+                        text="Age Range"
+                        value={ageRange}
+                        min={0}
+                        max={99}
+                        marks={[
+                            { value: 1, label: '1 year' },
+                            { value: 99, label: '99 years' }
+                        ]}
+                        onChangeHandler={(event, newVal) => { setAgeRange(newVal) }}
                     />
                     {/* <RangeSliderTab
                         openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
@@ -222,19 +252,6 @@ const PersistentDrawerLeft = ({
                         ]}
                         onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     /> */}
-                    <RangeSliderTab
-                        openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
-                        openVariable={numReviewersOpen}
-                        text="Number of Reviews"
-                        value={numberOfReviewers}
-                        min={100}
-                        max={20000}
-                        marks={[
-                            { value: 100, label: '100' },
-                            { value: 20000, label: '20,000' }
-                        ]}
-                        onChangeHandler={(event, newVal) => { setNumberOfReviewers(newVal) }}
-                    />
                     {/* <RangeSliderTab
                         openClickHandler={toggleTab('complexity', complexityOpen)}
                         openVariable={complexityOpen}
@@ -288,14 +305,16 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({ openTabs, leftNavOpen, playingTime, ageRange, numberOfPlayers, suggestedPlayers, numberOfReviewers }) => ({
+        ({ openTabs, leftNavOpen, playingTime, ageRange, numberOfPlayers, suggestedPlayers, numberOfReviewers, averageReviewScore,complexity }) => ({
             openTabs,
             leftNavOpen,
             playingTime,
             ageRange,
             numberOfPlayers,
             suggestedPlayers,
-            numberOfReviewers
+            numberOfReviewers,
+            averageReviewScore,
+            complexity
         }),
         {
             setTabOpenState: tab => ({ // {tabName: boolean}
@@ -313,6 +332,14 @@ const enhance = compose(
             setAgeRange: range => ({ // [num, num]
                 type: actions.setAgeRange,
                 payload: range
+            }),
+            setAverageReviewScore: score => ({ // [num, num]
+                type: actions.setAverageReviewScore,
+                payload: score
+            }),
+            setComplexity: complexity => ({ // [num, num]
+                type: actions.setComplexity,
+                payload:complexity
             }),
             setNumberOfPlayers: players => ({ // [num, num]
                 type: actions.setPlayers,
