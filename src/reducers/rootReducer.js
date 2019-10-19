@@ -12,6 +12,7 @@ import designers from './designers'
 import publishers from './publishers'
 import artists from './artists'
 import ageRange from './ageRange'
+import activeCriteria from './activeCriteria'
 
 export default combineReducers({
   openTabs,
@@ -26,5 +27,6 @@ export default combineReducers({
   designers,
   publishers,
   artists,
-  ageRange
+  ageRange,
+  activeCriteria
 });
