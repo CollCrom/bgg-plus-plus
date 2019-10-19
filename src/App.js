@@ -6,7 +6,7 @@ import store from './store';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
-import PersistentDrawerLeft from "./DrawerLeft";
+import PersistentDrawerLeft from "./drawerLeft/DrawerLeft";
 
 const handleTabClick = (tab) => () => {
 

@@ -3,10 +3,7 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -17,8 +14,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import Button from "@material-ui/core/Button";
-import Collapse from "@material-ui/core/Collapse";
 import { compose, withProps } from 'recompose';
 import { connect } from 'react-redux';
 
@@ -80,21 +75,21 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 const PersistentDrawerLeft = ({
-        playingTimeOpen,
-        leftNavOpenOpen,
-        suggestPlayersOpen,
-        reviewScoreOpen,
-        numReviewersOpen,
-        complexityOpen,
-        numPlayersOpen,
-        categoriesOpen,
-        ageRangeOpen,
-        designerOpen,
-        artistsOpen,
-        publisherOpen,
-        leftNavOpen,
-        setLeftNavOpenState
-    }) => {
+    playingTimeOpen,
+    leftNavOpenOpen,
+    suggestPlayersOpen,
+    reviewScoreOpen,
+    numReviewersOpen,
+    complexityOpen,
+    numPlayersOpen,
+    categoriesOpen,
+    ageRangeOpen,
+    designerOpen,
+    artistsOpen,
+    publisherOpen,
+    leftNavOpen,
+    setLeftNavOpenState
+}) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -109,27 +104,15 @@ const PersistentDrawerLeft = ({
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: leftNavOpen,
-                })}
+            <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, leftNavOpen && classes.hide)}
             >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, leftNavOpen && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Persistent drawer
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+                <MenuIcon />
+            </IconButton>
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -179,7 +162,7 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({openTabs, leftNavOpen}) => ({
+        ({ openTabs, leftNavOpen }) => ({
             openTabs,
             leftNavOpen,
         }),
@@ -194,7 +177,7 @@ const enhance = compose(
             })
         }
     ),
-    withProps(({openTabs}) => ({
+    withProps(({ openTabs }) => ({
         playingTimeOpen: openTabs.playingTime,
         suggestPlayersOpen: openTabs.suggestPlayers,
         reviewScoreOpen: openTabs.reviewScore,
