@@ -133,7 +133,8 @@ const PersistentDrawerLeft = ({
     artists,
     designers,
     publishers,
-    categories
+    categories,
+    activeCriteria
 
 }) => {
     const classes = useStyles();
@@ -148,6 +149,10 @@ const PersistentDrawerLeft = ({
         setTabOpenState({
             [tabName]: !tabState
         });
+
+    };
+
+    const toggleActive = (tabName, tabState) => () => {
         setCriteria({
             [tabName]: !tabState
         })
@@ -198,6 +203,7 @@ const PersistentDrawerLeft = ({
                             { value: 300, label: '5 hrs' }
                         ]}
                         onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
@@ -224,6 +230,7 @@ const PersistentDrawerLeft = ({
                             { value: 10.0, label: '10.0' }
                         ]}
                         onChangeHandler={(event, newVal) => { setAverageReviewScore(newVal) }}
+                        onActiveHandler={toggleActive('reviewScore', )}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
@@ -317,7 +324,7 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({ openTabs, leftNavOpen, playingTime, ageRange, numberOfPlayers, suggestedPlayers, numberOfReviewers, averageReviewScore,complexity, artists, designers, categories, publishers }) => ({
+        ({ openTabs, leftNavOpen, playingTime, ageRange, numberOfPlayers, suggestedPlayers, numberOfReviewers, averageReviewScore,complexity, artists, designers, categories, publishers,activeCriteria }) => ({
             openTabs,
             leftNavOpen,
             playingTime,
@@ -330,7 +337,8 @@ const enhance = compose(
             artists,
             designers,
             publishers,
-            categories
+            categories,
+            activeCriteria
         }),
         {
             setTabOpenState: tab => ({ // {tabName: boolean}

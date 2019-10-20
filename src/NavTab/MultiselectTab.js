@@ -11,6 +11,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Input from "@material-ui/core/Input";
 import categories from "../reducers/categories";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const MultiselectTab = ({
     openClickHandler,
@@ -18,7 +19,9 @@ const MultiselectTab = ({
     text,
     names,
     action,
-    store$
+    store$,
+    onActiveHandler,
+    active
 }) => {
 
     const useStyles = makeStyles(theme => ({
@@ -70,9 +73,14 @@ const MultiselectTab = ({
         action(values);
     };
 
+    const handleChecked = (event) => {
+
+    }
+
     return (
         <>
             <ListItem button onClick={openClickHandler}  className={openVariable ? 'tab-active' : null}>
+                <Checkbox checked={active} onChange={onActiveHandler} value="active" />
                 <ListItemText primary={text} />
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
