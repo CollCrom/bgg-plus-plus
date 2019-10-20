@@ -25,7 +25,7 @@ const InfoCardContainer = ({leftNavOpen}) => {
   const infoCards = []
   for(let i = 0; i < 10; i++) {
     infoCards.push(
-      <ul className={classes.card}>
+      <ul className={classes.card} key={'infoCardContainer'}>
         <InfoCard/>
       </ul>
     )

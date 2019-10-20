@@ -63,7 +63,9 @@ class CategoryService {
             'Virginia Andrews',
             'Kelly Snyder',
         ];
-
+        const url = '172.22.8.174:44355/api/boardgame/getcategories'
+        console.log(url)
+        Axios.get(url).then(res=> console.log(res))
         return names;
     }
 }

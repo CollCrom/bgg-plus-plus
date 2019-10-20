@@ -5,6 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -321,6 +322,7 @@ const PersistentDrawerLeft = ({
                         openVariable={publisherOpen}
                         text="Publisher"
                     /> */}
+                    <Button onClick={CategoryService.getCategories} > GET ALL Categories</Button>
                 </List>
             </Drawer>
             <main
