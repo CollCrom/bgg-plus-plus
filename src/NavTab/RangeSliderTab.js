@@ -18,7 +18,8 @@ const RangeSliderTab = ({
 }) => {
     return (
         <>
-            <ListItem button onClick={openClickHandler}>
+            <ListItem button onClick={openClickHandler} className={openVariable ? 'tab-active' : null}
+            >
                 <ListItemText primary={text} />
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>

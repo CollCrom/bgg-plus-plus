@@ -15,6 +15,9 @@ import RangeSliderTab from '../NavTab/RangeSliderTab';
 import { actions } from '../reducers/actions.actions';
 import CategoryService from "../service/CategoryService";
 import publishers from "../reducers/publishers";
+import Fab from "@material-ui/core/Fab";
+import NavigationIcon from '@material-ui/icons/Navigation';
+
 
 const drawerWidth = 600;
 
@@ -85,6 +88,12 @@ const useStyles = makeStyles(theme => ({
         width: '70px',
         height: '70px',
         position: "fixed"
+    },
+    fab: {
+        marginTop: theme.spacing(5),
+        marginLeft: theme.spacing(20),
+        marginRight: theme.spacing(20),
+        marginBottom: theme.spacing(5),
     }
 }));
 const PersistentDrawerLeft = ({
@@ -290,6 +299,10 @@ const PersistentDrawerLeft = ({
                     />
 
                 </List>
+                <Fab variant="extended" aria-label="delete" className={classes.fab}>
+                    <NavigationIcon className={classes.extendedIcon} />
+                    Search
+                </Fab>
             </Drawer>
             <main
                 className={clsx(classes.content, {

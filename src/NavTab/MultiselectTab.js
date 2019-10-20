@@ -72,7 +72,7 @@ const MultiselectTab = ({
 
     return (
         <>
-            <ListItem button onClick={openClickHandler}>
+            <ListItem button onClick={openClickHandler}  className={openVariable ? 'tab-active' : null}>
                 <ListItemText primary={text} />
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
@@ -82,7 +82,7 @@ const MultiselectTab = ({
                     <InputLabel htmlFor="select-multiple-checkbox">{text}</InputLabel>
                     <Select
                         multiple
-                        value={values}
+                        value={store$}
                         input={<Input id="select-multiple-checkbox" />}
                         renderValue={selected => selected.join(', ')}
                         MenuProps={MenuProps}>
