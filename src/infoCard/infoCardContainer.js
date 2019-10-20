@@ -11,7 +11,9 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     float: 'right',
-    width: 'calc(100% - 600px)'
+    width: '100%',
+    backgroundColor:'#DFDAC1',
+    color: '#513A25'
   },
   card: {
     margin: '10px',
