@@ -7,6 +7,7 @@ import Slider from '@material-ui/core/Slider';
 import styles from './RangeSlider.module.css';
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import {Container} from "@material-ui/core";
 
 const RangeSliderTab = ({
     openClickHandler,
@@ -22,13 +23,14 @@ const RangeSliderTab = ({
 }) => {
     return (
         <>
-            <ListItem button onClick={openClickHandler} className={openVariable ? 'tab-active' : null}
-            >
+            <ListItem button className={active ? 'tab-active' : null}>
                 <Checkbox checked={active} onChange={onActiveHandler} value="active" />
-                <ListItemText primary={text} />
-                {openVariable ? <ExpandLess /> : <ExpandMore />}
+                <div className={"flexy"}  onClick={openClickHandler}>
+                    <ListItemText primary={text}/>
+                    {openVariable ? <ExpandLess /> : <ExpandMore />}
+                </div>
             </ListItem>
-            <Collapse in={openVariable} timeout="auto">
+            <Collapse in={openVariable} timeout="auto" >
                 <div className={styles.sliderContainer}>
                     <Slider
                         value={value}

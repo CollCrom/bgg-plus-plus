@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-class CategoryService {
+class BGGService {
 
     getDesigners() {
         const url = '172.22.8.174:44355/api/boardgame/getdesigners'
@@ -83,4 +83,4 @@ class CategoryService {
 }
 
 
-export default new CategoryService();
+export default new BGGService();
