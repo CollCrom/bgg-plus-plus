@@ -73,13 +73,9 @@ const MultiselectTab = ({
         action(values);
     };
 
-    const handleChecked = (event) => {
-
-    }
-
     return (
         <>
-            <ListItem button onClick={openClickHandler}  className={openVariable ? 'tab-active' : null}>
+            <ListItem button onClick={openClickHandler}  className={active ? 'tab-active' : null}>
                 <Checkbox checked={active} onChange={onActiveHandler} value="active" />
                 <ListItemText primary={text} />
                 {openVariable ? <ExpandLess /> : <ExpandMore />}

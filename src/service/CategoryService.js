@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-class CategoryService {
+class BGGService {
 
     getDesigners() {
         const names = [
@@ -69,4 +69,4 @@ class CategoryService {
 }
 
 
-export default new CategoryService();
+export default new BGGService();
