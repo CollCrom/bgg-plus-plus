@@ -13,10 +13,10 @@ import { connect } from 'react-redux';
 import MultiselectTab from '../NavTab/MultiselectTab';
 import RangeSliderTab from '../NavTab/RangeSliderTab';
 import { actions } from '../reducers/actions.actions';
-import CategoryService from "../service/CategoryService";
 import publishers from "../reducers/publishers";
 import Fab from "@material-ui/core/Fab";
 import NavigationIcon from '@material-ui/icons/Navigation';
+import BGGService from "../service/BGGService";
 
 
 const drawerWidth = 600;
@@ -161,10 +161,10 @@ const PersistentDrawerLeft = ({
         event.stopPropagation();
     };
 
-    const allCategories = CategoryService.getCategories();
-    const allArtists = CategoryService.getArtists();
-    const allDesigners = CategoryService.getDesigners();
-    const allPublishers = CategoryService.getPublishers();
+    const allCategories = BGGService.getCategories();
+    const allArtists = BGGService.getArtists();
+    const allDesigners = BGGService.getDesigners();
+    const allPublishers = BGGService.getPublishers();
 
     return (
         <div>
