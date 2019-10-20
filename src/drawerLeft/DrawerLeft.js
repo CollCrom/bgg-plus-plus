@@ -152,12 +152,10 @@ const PersistentDrawerLeft = ({
 
     };
 
-    const toggleActive = (tabName, tabState, event) => () => {
-
-        console.log('\n_____________\"here\"=', "here", '_____________\n');
+    const toggleActive = (tabName, tabState, event) =>  {
         setCriteria({
             [tabName]: !tabState
-        })
+        });
         event.stopPropagation();
     };
 
@@ -207,7 +205,9 @@ const PersistentDrawerLeft = ({
                         ]}
                         onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                         onActiveHandler={(event) =>
-                        { toggleActive('playingTime', activeCriteria.playingTime, event) }}
+                        { 
+                            toggleActive('playingTime', activeCriteria.playingTime, event) }}
+                        active={activeCriteria.playingTime}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
@@ -223,6 +223,7 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setNumberOfPlayers(newVal) }}
                         onActiveHandler={(event) =>
                         { toggleActive('numPlayers', activeCriteria.numPlayers, event) }}
+                        active={activeCriteria.numPlayers}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
@@ -238,6 +239,7 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setAverageReviewScore(newVal) }}
                         onActiveHandler={(event) =>
                         { toggleActive('reviewScore', activeCriteria.reviewScore, event) }}
+                        active={activeCriteria.reviewScore}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
@@ -253,6 +255,7 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setNumberOfReviewers(newVal) }}
                         onActiveHandler={(event) =>
                         { toggleActive('numReviewers', activeCriteria.numReviewers, event) }}
+                        active={activeCriteria.numReviewers}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('complexity', complexityOpen)}
@@ -267,6 +270,7 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setComplexity(newVal) }}
                         onActiveHandler={(event) =>
                         { toggleActive('complexity', activeCriteria.complexity, event) }}
+                        active={activeCriteria.complexity}
                     />
 
                     <MultiselectTab
@@ -278,6 +282,7 @@ const PersistentDrawerLeft = ({
                         store$={categories}
                         onActiveHandler={(event) =>
                         { toggleActive('categories', activeCriteria.categories, event) }}
+                        active={activeCriteria.categories}
                     />
 
                     <RangeSliderTab
@@ -294,6 +299,7 @@ const PersistentDrawerLeft = ({
                         onChangeHandler={(event, newVal) => { setAgeRange(newVal) }}
                         onActiveHandler={(event) =>
                         { toggleActive('ageRange', activeCriteria.ageRange, event) }}
+                        active={activeCriteria.ageRange}
                     />
                     <MultiselectTab
                         openClickHandler={toggleTab('designer', designerOpen)}
@@ -304,6 +310,7 @@ const PersistentDrawerLeft = ({
                         store$={designers}
                         onActiveHandler={(event) =>
                         { toggleActive('designers', activeCriteria.designers, event) }}
+                        active={activeCriteria.designers}
                     />
                     <MultiselectTab
                         openClickHandler={toggleTab('artists', artistsOpen)}
@@ -314,6 +321,7 @@ const PersistentDrawerLeft = ({
                         store$={artists}
                         onActiveHandler={(event) =>
                         { toggleActive('artists', activeCriteria.artists, event) }}
+                        active={activeCriteria.artists}
                     />
                     <MultiselectTab
                         openClickHandler={toggleTab('publisher', publisherOpen)}
@@ -324,6 +332,7 @@ const PersistentDrawerLeft = ({
                         store$={publishers}
                         onActiveHandler={(event) =>
                         { toggleActive('publishers', activeCriteria.publishers, event) }}
+                        active={activeCriteria.publishers}
                     />
 
                 </List>

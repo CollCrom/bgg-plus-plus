@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InfoCardContainer = ({leftNavOpen}) => {
-  console.log(leftNavOpen)
   const classes = useStyles();
   const infoCards = []
   for(let i = 0; i < 10; i++) {

@@ -75,10 +75,12 @@ const MultiselectTab = ({
 
     return (
         <>
-            <ListItem button onClick={openClickHandler}  className={active ? 'tab-active' : null}>
+            <ListItem button className={active ? 'tab-active' : null}>
                 <Checkbox checked={active} onChange={onActiveHandler} value="active" />
-                <ListItemText primary={text} />
+                <div className={"flexy"} onClick={openClickHandler}>
+                <ListItemText primary={text}/>
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
+                </div>
             </ListItem>
             <Collapse in={openVariable} timeout="auto">
 

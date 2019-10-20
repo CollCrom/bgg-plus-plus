@@ -6,3 +6,8 @@
     background: rgb(48, 58, 166) !important;
     color: white !important;
 }
+
+.flexy {
+    display: flex;
+    flex: 1 1 auto;
+}
