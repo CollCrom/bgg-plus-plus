@@ -83,7 +83,8 @@ const useStyles = makeStyles(theme => ({
     },
     hamburgerIcon: {
         width: '70px',
-        height: '70px'
+        height: '70px',
+        position: "fixed"
     }
 }));
 const PersistentDrawerLeft = ({
