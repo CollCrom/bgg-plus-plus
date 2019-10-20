@@ -5,6 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -54,6 +55,9 @@ const useStyles = makeStyles(theme => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        backgroundColor:'#ABA794',
+        color: '#513A25',
+        boxShadow: '0 5px 10px -6px rgba(0,0,0,.7)',
     },
     drawerHeader: {
         display: 'flex',
@@ -61,6 +65,8 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
+        backgroundColor:'#ABA794',
+        color: '#513A25'
     },
     content: {
         flexGrow: 1,
@@ -82,7 +88,9 @@ const useStyles = makeStyles(theme => ({
         cursor: 'pointer',
         height: '70px',
         width: '70px',
-        padding: '15px 0 0 15px'
+        padding: '15px 0 0 15px',
+        backgroundColor:'#DFDAC1',
+        color: '#513A25'
     },
     hamburgerIcon: {
         width: '70px',
@@ -94,6 +102,10 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(20),
         marginRight: theme.spacing(20),
         marginBottom: theme.spacing(5),
+    },
+    color: {
+        backgroundColor:'#DFDAC1',
+        color: '#513A25'
     }
 }));
 const PersistentDrawerLeft = ({
@@ -165,7 +177,7 @@ const PersistentDrawerLeft = ({
     const allPublishers = BGGService.getPublishers();
 
     return (
-        <div>
+        <div className={classes.color}>
             <CssBaseline />
             <div className={classes.hamburgerContainer}
                 onClick={toggleDrawer}
@@ -334,20 +346,12 @@ const PersistentDrawerLeft = ({
                         { toggleActive('publishers', activeCriteria.publishers, event) }}
                         active={activeCriteria.publishers}
                     />
-
                 </List>
                 <Fab variant="extended" aria-label="delete" className={classes.fab}>
                     <NavigationIcon className={classes.extendedIcon} />
                     Search
                 </Fab>
             </Drawer>
-            <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: leftNavOpen,
-                })}
-            >
-                <div className={classes.drawerHeader} />
-            </main>
         </div>
     );
 }
