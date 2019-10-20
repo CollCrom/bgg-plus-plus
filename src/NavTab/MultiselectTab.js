@@ -10,12 +10,18 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Checkbox from "@material-ui/core/Checkbox";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Input from "@material-ui/core/Input";
+import categories from "../reducers/categories";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const MultiselectTab = ({
     openClickHandler,
     openVariable,
     text,
-    names
+    names,
+    action,
+    store$,
+    onActiveHandler,
+    active
 }) => {
 
     const useStyles = makeStyles(theme => ({
@@ -52,31 +58,50 @@ const MultiselectTab = ({
     };
 
     const classes = useStyles();
+    let values = [];
+
+    const handleChange = event => {
+        const option = event.target.name;
+        values = store$.slice();
+
+        let  idx = values.indexOf(option);
+        if (idx < 0){
+            values.push(option);
+        } else {
+            values.splice(idx, 1);
+        }
+        action(values);
+    };
+
+    const handleChecked = (event) => {
+
+    }
 
     return (
         <>
-            <ListItem button onClick={openClickHandler}>
+            <ListItem button onClick={openClickHandler}  className={openVariable ? 'tab-active' : null}>
+                <Checkbox checked={active} onChange={onActiveHandler} value="active" />
                 <ListItemText primary={text} />
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openVariable} timeout="auto">
 
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
+                    <InputLabel htmlFor="select-multiple-checkbox">{text}</InputLabel>
                     <Select
                         multiple
-                        value={names}
-                        onChange={null}
+                        value={store$}
                         input={<Input id="select-multiple-checkbox" />}
                         renderValue={selected => selected.join(', ')}
-                        MenuProps={MenuProps}
-                    >
-                        {names.map(name => (
+                        MenuProps={MenuProps}>
+                        {
+                            names.map(name => (
                             <MenuItem key={name} value={name}>
-                                <Checkbox checked={true} />
+                                <Checkbox name={name} onChange={handleChange} checked={store$.indexOf(name) >= 0} />
                                 <ListItemText primary={name} />
                             </MenuItem>
-                        ))}
+                        ))
+                        }
                     </Select>
                 </FormControl>
 

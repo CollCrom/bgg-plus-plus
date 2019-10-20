@@ -15,6 +15,10 @@ import MultiselectTab from '../NavTab/MultiselectTab';
 import RangeSliderTab from '../NavTab/RangeSliderTab';
 import { actions } from '../reducers/actions.actions';
 import CategoryService from "../service/CategoryService";
+import publishers from "../reducers/publishers";
+import Fab from "@material-ui/core/Fab";
+import NavigationIcon from '@material-ui/icons/Navigation';
+
 
 const drawerWidth = 600;
 
@@ -83,7 +87,14 @@ const useStyles = makeStyles(theme => ({
     },
     hamburgerIcon: {
         width: '70px',
-        height: '70px'
+        height: '70px',
+        position: "fixed"
+    },
+    fab: {
+        marginTop: theme.spacing(5),
+        marginLeft: theme.spacing(20),
+        marginRight: theme.spacing(20),
+        marginBottom: theme.spacing(5),
     }
 }));
 const PersistentDrawerLeft = ({
@@ -115,6 +126,17 @@ const PersistentDrawerLeft = ({
     setAverageReviewScore,
     averageReviewScore,
     numberOfReviewers,
+    setCategories,
+    setDesigner,
+    setArtists,
+    setPublishers,
+    setCriteria,
+    artists,
+    designers,
+    publishers,
+    categories,
+    activeCriteria
+
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -128,12 +150,19 @@ const PersistentDrawerLeft = ({
         setTabOpenState({
             [tabName]: !tabState
         });
+
     };
 
-    const categories = CategoryService.getCategories();
-    const artists = CategoryService.getArtists();
-    const designers = CategoryService.getDesigners();
-    const publishers = CategoryService.getPublishers();
+    const toggleActive = (tabName, tabState) => () => {
+        setCriteria({
+            [tabName]: !tabState
+        })
+    };
+
+    const allCategories = CategoryService.getCategories();
+    const allArtists = CategoryService.getArtists();
+    const allDesigners = CategoryService.getDesigners();
+    const allPublishers = CategoryService.getPublishers();
 
     return (
         <div>
@@ -175,6 +204,7 @@ const PersistentDrawerLeft = ({
                             { value: 300, label: '5 hrs' }
                         ]}
                         onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
+                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('numPlayers', numPlayersOpen)}
@@ -201,6 +231,7 @@ const PersistentDrawerLeft = ({
                             { value: 10.0, label: '10.0' }
                         ]}
                         onChangeHandler={(event, newVal) => { setAverageReviewScore(newVal) }}
+                        onActiveHandler={toggleActive('reviewScore', )}
                     />
                     <RangeSliderTab
                         openClickHandler={toggleTab('numReviewers', numReviewersOpen)}
@@ -232,7 +263,9 @@ const PersistentDrawerLeft = ({
                         openClickHandler={toggleTab('categories', categoriesOpen)}
                         openVariable={categoriesOpen}
                         text={"Categories"}
-                        names = {categories}
+                        names = {allCategories}
+                        action={setCategories}
+                        store$={categories}
                     />
 
                     <RangeSliderTab
@@ -252,78 +285,31 @@ const PersistentDrawerLeft = ({
                         openClickHandler={toggleTab('designer', designerOpen)}
                         openVariable={designerOpen}
                         text={"Designer"}
-                        names = {designers}
+                        names = {allDesigners}
+                        action={setDesigner}
+                        store$={designers}
                     />
                     <MultiselectTab
                         openClickHandler={toggleTab('artists', artistsOpen)}
                         openVariable={artistsOpen}
                         text={"Artists"}
-                        names = {artists}
+                        names = {allArtists}
+                        action={setArtists}
+                        store$={artists}
                     />
                     <MultiselectTab
                         openClickHandler={toggleTab('publisher', publisherOpen)}
                         openVariable={publisherOpen}
                         text={"Publisher"}
-                        names = {publishers}
+                        names = {allPublishers}
+                        action={setPublishers}
+                        store$={publishers}
                     />
-                    {/* <RangeSliderTab
-                        openClickHandler={toggleTab('reviewScore', reviewScoreOpen)}
-                        openVariable={reviewScoreOpen}
-                        text="Average Review Score"
-                        value={playingTime}
-                        min={1}
-                        max={300}
-                        marks={[
-                            { value: 1, label: '1 min' },
-                            { value: 30, label: '30 min' },
-                            { value: 60, label: '1 hr' },
-                            { value: 120, label: '2 hrs' },
-                            { value: 180, label: '3 hrs' },
-                            { value: 240, label: '4 hrs' },
-                            { value: 300, label: '5 hrs' }
-                        ]}
-                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
-                    /> */}
-                    {/* <RangeSliderTab
-                        openClickHandler={toggleTab('complexity', complexityOpen)}
-                        openVariable={complexityOpen}
-                        text="Complexity"
-                        value={playingTime}
-                        min={1}
-                        max={300}
-                        marks={[
-                            { value: 1, label: '1 min' },
-                            { value: 30, label: '30 min' },
-                            { value: 60, label: '1 hr' },
-                            { value: 120, label: '2 hrs' },
-                            { value: 180, label: '3 hrs' },
-                            { value: 240, label: '4 hrs' },
-                            { value: 300, label: '5 hrs' }
-                        ]}
-                        onChangeHandler={(event, newVal) => { setPlayingTime(newVal) }}
-                    /> */}
-                    {/* <MultiselectTab
-                        openClickHandler={toggleTab('categories', categoriesOpen)}
-                        openVariable={categoriesOpen}
-                        text="Category"
-                    /> */}
-                    {/* <MultiselectTab
-                        openClickHandler={toggleTab('designer', designerOpen)}
-                        openVariable={designerOpen}
-                        text="Designer"
-                    /> */}
-                    {/* <MultiselectTab
-                        openClickHandler={toggleTab('artists', artistsOpen)}
-                        openVariable={artistsOpen}
-                        text="Artist"
-                    /> */}
-                    {/* <MultiselectTab
-                        openClickHandler={toggleTab('publisher', publisherOpen)}
-                        openVariable={publisherOpen}
-                        text="Publisher"
-                    /> */}
-                    <Button onClick={CategoryService.getCategories} > GET ALL Categories</Button>
                 </List>
+                <Fab variant="extended" aria-label="delete" className={classes.fab}>
+                    <NavigationIcon className={classes.extendedIcon} />
+                    Search
+                </Fab>
             </Drawer>
             <main
                 className={clsx(classes.content, {
@@ -338,7 +324,7 @@ const PersistentDrawerLeft = ({
 
 const enhance = compose(
     connect(
-        ({ openTabs, leftNavOpen, playingTime, ageRange, numberOfPlayers, suggestedPlayers, numberOfReviewers, averageReviewScore,complexity }) => ({
+        ({ openTabs, leftNavOpen, playingTime, ageRange, numberOfPlayers, suggestedPlayers, numberOfReviewers, averageReviewScore,complexity, artists, designers, categories, publishers,activeCriteria }) => ({
             openTabs,
             leftNavOpen,
             playingTime,
@@ -347,7 +333,12 @@ const enhance = compose(
             suggestedPlayers,
             numberOfReviewers,
             averageReviewScore,
-            complexity
+            complexity,
+            artists,
+            designers,
+            publishers,
+            categories,
+            activeCriteria
         }),
         {
             setTabOpenState: tab => ({ // {tabName: boolean}
@@ -378,9 +369,29 @@ const enhance = compose(
                 type: actions.setPlayers,
                 payload: players
             }),
+            setCategories: categories => ({ // [num, num]
+                type: actions.setCategories,
+                payload: categories
+            }),
+            setDesigner: designer => ({ // [num, num]
+                type: actions.setDesigner,
+                payload: designer
+            }),
+            setArtists: artists => ({ // [num, num]
+                type: actions.setArtists,
+                payload: artists
+            }),
+            setPublishers: publishers => ({ // [num, num]
+                type: actions.setPublishers,
+                payload: publishers
+            }),
             setSuggestedPlayers: players => ({ // [num, num]
                 type: actions.setSuggestedPlayer,
                 payload: players
+            }),
+            setCriteria: num => ({ // [num, num]
+                type: actions.setCriteria,
+                payload: num
             }),
             setNumberOfReviewers: num => ({ // [num, num]
                 type: actions.setNumberOfReviewers,

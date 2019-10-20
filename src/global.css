@@ -1,3 +1,8 @@
 .MuiSlider-markLabelActive {
     color: rgba(0, 0, 0, 0.54) !important;
 }
+
+.tab-active {
+    background: rgb(48, 58, 166) !important;
+    color: white !important;
+}

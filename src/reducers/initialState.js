@@ -14,7 +14,7 @@ export default {
     },
     activeCriteria: {
         playingTime: false,
-        suggestedsPlayers: false,
+        suggestedPlayers: false,
         reviewScore: false,
         numReviewers: false,
         complexity: false,

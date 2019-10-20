@@ -5,6 +5,8 @@ import Collapse from "@material-ui/core/Collapse";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import Slider from '@material-ui/core/Slider';
 import styles from './RangeSlider.module.css';
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const RangeSliderTab = ({
     openClickHandler,
@@ -14,11 +16,15 @@ const RangeSliderTab = ({
     onChangeHandler,
     min,
     max,
-    marks
+    marks,
+    onActiveHandler,
+    active
 }) => {
     return (
         <>
-            <ListItem button onClick={openClickHandler}>
+            <ListItem button onClick={openClickHandler} className={openVariable ? 'tab-active' : null}
+            >
+                <Checkbox checked={active} onChange={onActiveHandler} value="active" />
                 <ListItemText primary={text} />
                 {openVariable ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
