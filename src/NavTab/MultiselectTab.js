@@ -15,7 +15,9 @@ const MultiselectTab = ({
     openClickHandler,
     openVariable,
     text,
-    names
+    names,
+    action,
+    store$
 }) => {
 
     const useStyles = makeStyles(theme => ({
@@ -52,6 +54,20 @@ const MultiselectTab = ({
     };
 
     const classes = useStyles();
+    let values = [];
+
+    const handleChange = event => {
+        const option = event.target.name;
+        values = store$.slice();
+
+        let  idx = values.indexOf(option);
+        if (idx < 0){
+            values.push(option);
+        } else {
+            values.splice(idx, 1);
+        }
+        action(values);
+    };
 
     return (
         <>
@@ -65,18 +81,18 @@ const MultiselectTab = ({
                     <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
                     <Select
                         multiple
-                        value={names}
-                        onChange={null}
+                        value={values}
                         input={<Input id="select-multiple-checkbox" />}
                         renderValue={selected => selected.join(', ')}
-                        MenuProps={MenuProps}
-                    >
-                        {names.map(name => (
+                        MenuProps={MenuProps}>
+                        {
+                            names.map(name => (
                             <MenuItem key={name} value={name}>
-                                <Checkbox checked={true} />
+                                <Checkbox name={name} onChange={handleChange} checked={store$.indexOf(name) >= 0} />
                                 <ListItemText primary={name} />
                             </MenuItem>
-                        ))}
+                        ))
+                        }
                     </Select>
                 </FormControl>
 
