@@ -10,6 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Checkbox from "@material-ui/core/Checkbox";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Input from "@material-ui/core/Input";
+import categories from "../reducers/categories";
 
 const MultiselectTab = ({
     openClickHandler,
@@ -78,7 +79,7 @@ const MultiselectTab = ({
             <Collapse in={openVariable} timeout="auto">
 
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
+                    <InputLabel htmlFor="select-multiple-checkbox">{text}</InputLabel>
                     <Select
                         multiple
                         value={values}
